@@ -1,0 +1,28 @@
+.Navbar .myContainer {
+  height: 120px;
+  background: #2e2e2e;
+
+  color: white;
+}
+
+.Navbar .myLogo {
+  text-align: center;
+}
+
+.Navbar .myNavTab {
+  margin-top: 35px;
+}
+.Navbar h2 {
+  font-size: 30px;
+}
+.Navbar a {
+  color: white;
+}
+
+.Navbar a:hover {
+  color: #505285;
+}
+
+.nav {
+  --bs-nav-link-hover-color: gray !important;
+}
