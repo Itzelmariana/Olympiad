@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+const Footer = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <nav className='row'>
-      <div className='col-6 p-4'>
-        {location.pathname !== '/' && (
-          <button className='btn btn-dark mb-3' onClick={() => navigate(-1)}>
-            &larr;
-          </button>
-        )}
+    <nav className='row fixed-bottom'>
+      <div className='col-6  p-4'>
+        <Link to='/'>
+          <h4>home</h4>
+        </Link>
       </div>
       <div className='col-6 text-right p-4'>
         <Button variant='primary' onClick={handleShow}>
-          Rules
+          Shop
         </Button>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header>
-            <Modal.Title>How to Play</Modal.Title>
+            <Modal.Title>Support our project</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Describe Rules here...</Modal.Body>
+          <Modal.Body>Donation form here</Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
               Close
@@ -40,4 +36,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Footer;

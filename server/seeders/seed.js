@@ -1,7 +1,8 @@
 const db = require('../config/connection');
-const { Profile, Questions } = require('../models');
+const { Profile } = require('../models');
 const profileSeeds = require('./profileSeeds.json');
-const questionsSeeds = require('./questionsSeeds.json');
+// const questionsSeeds = require('./questionsSeeds.json');
+// const { Profile, Questions } = require('../models');
 
 db.once('open', async () => {
   try {
@@ -24,7 +25,7 @@ db.once('open', async () => {
       );
     } */
 
-    console.log('🌱 all done! 🌱 ');
+    console.log('all done!');
     process.exit(0);
   } catch (err) {
     throw err;
