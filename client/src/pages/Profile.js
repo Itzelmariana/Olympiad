@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -29,10 +30,12 @@ const Profile = () => {
 
   if (!profile?.name) {
     return (
-      <h4>
-        You need to be logged in to see your profile page. Use the navigation
-        links above to sign up or log in!
-      </h4>
+      <div>
+        <h4 className='text-center'>
+          Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
+          the game.
+        </h4>
+      </div>
     );
   }
 
