@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <nav className='row'>
+    <nav className='row fixed-top'>
       <div className='col-6 p-4'>
         {location.pathname !== '/' && (
           <button className='btn btn-dark mb-3' onClick={() => navigate(-1)}>
@@ -22,7 +22,7 @@ const Navbar = () => {
       </div>
       <div className='col-6 text-right p-4'>
         <Button variant='' onClick={handleShow}>
-        <img src={rules} alt='rules' width={'40px'} />
+          <img src={rules} alt='rules' width={'40px'} />
         </Button>
 
         <Modal show={show} onHide={handleClose}>
