@@ -19,11 +19,11 @@ const Home = () => {
   };
 
   return (
-    <header className='Home  container border border-dark'>
+    <header className='Home  container mh-100 border border-dark'>
       <div>
         <Link to='/'>
           <h1 className='align-center text-center'>
-            <img className='align-center text-center' src={logo} alt='logo' />
+            <img className='m-auto d-none d-sm-block' src={logo} alt='logo' />
           </h1>
         </Link>
 
