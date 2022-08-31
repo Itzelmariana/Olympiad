@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -64,35 +64,12 @@ function shuffle(array) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default function Single() {
-  getQuestion();
+
+  useEffect(() => {
+    getQuestion();
+  }, []);
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
@@ -127,7 +104,6 @@ export default function Single() {
     );
   }
 
-
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1);
@@ -146,28 +122,8 @@ export default function Single() {
     }
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
-    <div className='app'>
+    <div className='question-card-section'>
       {showScore ? (
         <div className='score-section'>
           You scored {score} out of {q.length}
@@ -182,7 +138,7 @@ export default function Single() {
           </div>
           <div className='answer-section'>
             {q[currentQuestion].answerOptions.map((answerOption) => (
-              <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
+              <button key={Math.floor(Math.random() * 9999)} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
             ))}
           </div>
         </>
