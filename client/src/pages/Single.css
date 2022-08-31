@@ -1,0 +1,20 @@
+.Single .myCard {
+  border: 1px solid rgb(205, 205, 205);
+  border-radius: 15px;
+}
+
+.Single .myUser {
+  background: #085aa4;
+  border-radius: 60%;
+  color: white;
+  width: fit-content;
+  text-align: center;
+  margin: auto;
+}
+.Single .myQuestions {
+  color: #085aa4;
+}
+.Single .myBtn:hover {
+  background: #085aa4;
+  color: white;
+}
