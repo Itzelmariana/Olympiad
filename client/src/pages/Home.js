@@ -9,6 +9,8 @@ import logo from '../images/logo.png';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 
+import './Home.css';
+
 const Home = () => {
   const [open, setOpen] = useState(false);
   const [openedSignup, setOpenSignup] = useState(false);
@@ -36,14 +38,14 @@ const Home = () => {
                 </div>
                 <div>
                   <Link to='/singleplayer'>
-                    <button className='btn btn-lg btn-primary m-2'>
+                    <button className='btn btn-lg btn-primary m-2 largeButtons'>
                       Single Player
                     </button>
                   </Link>
                 </div>
                 <div>
                   <Link to='/multiplayer'>
-                    <button className='btn btn-lg btn-success m-2'>
+                    <button className='btn btn-lg btn-success m-2 largeButtons'>
                       Multi Player
                     </button>
                   </Link>
@@ -63,7 +65,7 @@ const Home = () => {
                     onClick={() => setOpen(!open)}
                     aria-controls='login-collapse-form'
                     aria-expanded={open}
-                    className='btn btn-lg btn-primary m-2'
+                    className='btn btn-lg btn-primary m-2 largeButtons'
                   >
                     Login
                   </Button>
@@ -78,7 +80,7 @@ const Home = () => {
                     onClick={() => setOpenSignup(!openedSignup)}
                     aria-controls='signup-collapse-form'
                     aria-expanded={openedSignup}
-                    className='btn btn-lg btn-primary m-2 mb-3'
+                    className='btn btn-lg btn-primary m-2 mb-3 largeButtons'
                   >
                     Signup
                   </Button>
