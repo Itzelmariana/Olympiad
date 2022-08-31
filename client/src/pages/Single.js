@@ -10,6 +10,7 @@ import Auth from '../utils/auth';
 import './Single.css';
 
 const questionArray = require('./q');
+var he = require('he');
 
 // FINALIZED QUESTION
 let q = [];
@@ -78,7 +79,8 @@ export default function Single() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-
+  const [ignoranceScore, setIgnoranceScore] = useState(0);
+  console.log("SCORE: " + score)
   // AUTHORIZATION
   const { profileId } = useParams();
   const { loading, data } = useQuery(
@@ -114,26 +116,35 @@ export default function Single() {
     if (isCorrect) {
       setScore(score + 1);
       console.log('correct');
+      console.log("SCORE: " + score)
     } else {
+      setIgnoranceScore(ignoranceScore + 1);
       console.log('wrong');
     }
 
     const nextQuestion = currentQuestion;
 
     if (nextQuestion < 50) {
+      if (score > 9) {
+        setShowScore(true);
+      } else if (ignoranceScore > 9) {
+        setShowScore(true);
+      }
       getQuestion();
       setCurrentQuestion(currentQuestion + 1);
-    } else {
-      setShowScore(true);
     }
   };
+
+  let decodedText = q[currentQuestion].questionText
+  let newDecodedText = he.decode(decodedText);
+  console.log("DECODED: " + newDecodedText)
 
   return (
     <div className='Single'>
       <div className='question-card-section'>
         {showScore ? (
           <div className='score-section'>
-            You scored {score} out of {q.length}
+            You scored {score}!
           </div>
         ) : (
           <>
@@ -149,7 +160,7 @@ export default function Single() {
                       <span>Question {currentQuestion + 1}</span>
                     </div>
                     <div className='question-text myQuestions'>
-                      {q[currentQuestion].questionText}
+                      {newDecodedText}
                     </div>
                   </div>
                   <div className='answer-sections'>
@@ -161,7 +172,7 @@ export default function Single() {
                           handleAnswerOptionClick(answerOption.isCorrect)
                         }
                       >
-                        {answerOption.answerText}
+                        {he.decode(answerOption.answerText)}
                       </button>
                     ))}
                   </div>
@@ -177,5 +188,6 @@ export default function Single() {
     </div>
   );
 
-  // this is stupid
+  // THIS IS VERY STUPID
+
 }
