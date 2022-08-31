@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useLocation, useNavigate } from 'react-router-dom';
+import rules from '../images/rules.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -20,8 +21,8 @@ const Navbar = () => {
         )}
       </div>
       <div className='col-6 text-right p-4'>
-        <Button variant='primary' onClick={handleShow}>
-          Rules
+        <Button variant='' onClick={handleShow}>
+        <img src={rules} alt='rules' width={'40px'} />
         </Button>
 
         <Modal show={show} onHide={handleClose}>
