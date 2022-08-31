@@ -21,7 +21,7 @@ const Home = () => {
   };
 
   return (
-    <header className='Home  container mh-100 border border-dark'>
+    <header className='Home container border border-dark'>
       <div>
         <Link to='/'>
           <h1 className='align-center text-center'>
@@ -38,14 +38,14 @@ const Home = () => {
                 </div>
                 <div>
                   <Link to='/singleplayer'>
-                    <button className='btn btn-lg btn-primary m-2 largeButtons'>
+                    <button className='btn btn-lg btn-primary m-2 mb-4 largeButtons'>
                       Single Player
                     </button>
                   </Link>
                 </div>
                 <div>
                   <Link to='/multiplayer'>
-                    <button className='btn btn-lg btn-success m-2 largeButtons'>
+                    <button className='btn btn-lg btn-success m-2 mb-5 largeButtons'>
                       Multi Player
                     </button>
                   </Link>
