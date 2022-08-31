@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { Link } from 'react-router-dom';
+import Donation from './Donation';
 
 const Footer = () => {
   const [show, setShow] = useState(false);
@@ -24,7 +25,7 @@ const Footer = () => {
           <Modal.Header>
             <Modal.Title>Support our project</Modal.Title>
           </Modal.Header>
-          <Modal.Body>Donation form here</Modal.Body>
+          <Modal.Body><Donation/></Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
               Close
