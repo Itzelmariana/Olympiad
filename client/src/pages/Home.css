@@ -50,3 +50,7 @@
     /* margin-top: 0px; */
 }
 
+body {
+    background-image: url('../images/background.jpg');
+    background-size:cover;
+}
