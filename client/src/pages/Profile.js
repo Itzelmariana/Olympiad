@@ -41,11 +41,11 @@ const Profile = () => {
 
   return (
     <div>
-      <h2 className='card-header'>
+      <h2 className='card-header text-center'>
         {profileId ? `${profile.name}'s` : 'Welcome '}
         {profile.name}
       </h2>
-      <h3>You Score is</h3>
+      <h3 className='text-center'>You Score is</h3>
     </div>
   );
 };
