@@ -4,47 +4,45 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-
 import Auth from '../utils/auth';
 
-// const q = require('q');
 const questionArray = require('./q');
+
 // FINALIZED QUESTION
 let q = [];
 let answerOptions = [];
 // CORRECT ANSWER TO COMPARE CHOICE TO
 let correct = [];
 function getQuestion() {
-  answerOptions = [];
-  // GET RANDOM NUMBER
   let randomQuestion = Math.floor(Math.random() * 49);
   console.log("random" + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
   let qa = questionArray.default[randomQuestion]
+  answerOptions = [];
+  // GET RANDOM NUMBER
+
   console.log(qa);
+
   // LOOP THROUGH INCORRECT ANSWERS AND PUSH TO NEW ARRAY
   for (let i = 0; i < 3; i++) {
     answerOptions.push({ answerText: qa.incorrect_answers[i], isCorrect: false })
   }
-
   answerOptions.push({ answerText: qa.correct_answer, isCorrect: true })
 
   correct.push({ answerText: qa.correct_answer, isCorrect: true })
   // console.log("Answers: " + q);
   // console.log("Correct Answer:" + correct);
 
-
   q.push({ questionText: qa.question, answerOptions });
-  // q.splice(0, 1, q);
 
   shuffle(answerOptions);
+
   console.log("ANSWER OPTIONS: ");
   console.log(answerOptions);
   console.log(q);
 }
 
-
-
+// FUNCTION TO SHUFFLE THE ARRAY AFTER GIVING IT THE INCORRECT AND CORRECT ANSWERS
 function shuffle(array) {
   let currentIndex = array.length, randomIndex;
 
@@ -63,7 +61,7 @@ function shuffle(array) {
   return array;
 }
 
-
+// REACT BS STARTS HERE
 export default function Single() {
 
   useEffect(() => {
@@ -74,7 +72,7 @@ export default function Single() {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
 
-
+// AUTHORIZATION
   const { profileId } = useParams();
   const { loading, data } = useQuery(
     profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
@@ -104,6 +102,7 @@ export default function Single() {
     );
   }
 
+  // HANDLE ANSWER OPTIONS WHEN CLICKED
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1);
@@ -113,10 +112,11 @@ export default function Single() {
       console.log('wrong')
     }
 
-    const nextQuestion = currentQuestion + 1;
+    const nextQuestion = currentQuestion;
 
-    if (nextQuestion) {
-      setCurrentQuestion(nextQuestion);
+    if (nextQuestion < 50) {
+      getQuestion();
+      setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowScore(true);
     }
@@ -146,4 +146,3 @@ export default function Single() {
     </div>
   );
 };
-
