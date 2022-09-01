@@ -27,12 +27,7 @@ const Home = () => {
         <Link to='/'>
           <h1 className='align-center text-center'>
             <img src={gif} alt='gif' width={'100px'} />
-            <img
-              className='m-auto d-none d-sm-block text-center'
-              src={logo}
-              alt='logo'
-              width={'100%'}
-            />
+
             <img className='m-auto d-sm-block' src={logo} alt='logo' />
           </h1>
         </Link>

@@ -25,13 +25,13 @@
 .Home {
   display: flex;
   flex-direction: column;
-  width: 85%;
+  width: 65%;
   background-color: var(--beige);
   border-style: solid;
   border-color: var(--beige2);
   border-width: 15px;
   border-radius: 35px;
-  margin-top: 90px;
+  margin-top: 100px;
 }
 
 .largeButtons {
@@ -50,7 +50,6 @@
   width: 65%;
   padding: 10px;
   /* margin-top: 0px; */
-
 }
 
 body {
@@ -66,4 +65,3 @@ body {
     font-size: 25px;
   }
 }
-
