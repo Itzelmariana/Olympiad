@@ -33,6 +33,7 @@ const Home = () => {
               alt='logo'
               width={'100%'}
             />
+            <img className='m-auto d-sm-block' src={logo} alt='logo' />
           </h1>
         </Link>
 

@@ -10,7 +10,7 @@
   --lightPurple: #c6aad3;
   --purple: #8f54a6;
   --blue: #3c92c1;
-  --darkBlue: #085aa4;
+  --darkBlue: #293241;
   --lightBlue: #b5c6e0;
   --lightgrey: #ababab;
   --black: #010101;
@@ -25,7 +25,7 @@
 .Home {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 85%;
   background-color: var(--beige);
   border-style: solid;
   border-color: var(--beige2);
@@ -50,6 +50,7 @@
   width: 65%;
   padding: 10px;
   /* margin-top: 0px; */
+
 }
 
 body {
@@ -65,3 +66,4 @@ body {
     font-size: 25px;
   }
 }
+
