@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 import logo from '../images/logo.png';
+import gif from '../images/torchGif.gif';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 
@@ -25,6 +26,13 @@ const Home = () => {
       <div>
         <Link to='/'>
           <h1 className='align-center text-center'>
+            <img src={gif} alt='gif' width={'100px'} />
+            <img
+              className='m-auto d-none d-sm-block text-center'
+              src={logo}
+              alt='logo'
+              width={'100%'}
+            />
             <img className='m-auto d-sm-block' src={logo} alt='logo' />
           </h1>
         </Link>
@@ -80,7 +88,7 @@ const Home = () => {
                     onClick={() => setOpenSignup(!openedSignup)}
                     aria-controls='signup-collapse-form'
                     aria-expanded={openedSignup}
-                    className='btn btn-lg btn-primary m-2 mb-3 largeButtons'
+                    className='btn btn-lg btn-primary m-2 mb-5 largeButtons'
                   >
                     Signup
                   </Button>
