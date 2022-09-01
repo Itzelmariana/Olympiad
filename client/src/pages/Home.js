@@ -36,7 +36,7 @@ const Home = () => {
           {Auth.loggedIn() ? (
             <>
               <div className='align-center text-center'>
-                <div>
+                <div className='welcome'>
                   <Link to='/me'>Welcome {Auth.getProfile().data.name}</Link>
                 </div>
                 <div>
