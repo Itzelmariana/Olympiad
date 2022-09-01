@@ -83,7 +83,7 @@ const Home = () => {
                     onClick={() => setOpenSignup(!openedSignup)}
                     aria-controls='signup-collapse-form'
                     aria-expanded={openedSignup}
-                    className='btn btn-lg btn-primary m-2 mb-5 largeButtons'
+                    className='btn btn-lg btn-primary m-2  largeButtons'
                   >
                     Signup
                   </Button>
@@ -93,6 +93,7 @@ const Home = () => {
                     </div>
                   </Collapse>
                 </div>
+                <div className='mt-5'></div>
               </div>
             </>
           )}
