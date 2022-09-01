@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
+import Highscore from '../components/Highscore';
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -45,7 +46,9 @@ const Profile = () => {
         {profileId ? `${profile.name}'s` : 'Welcome '}
         {profile.name}
       </h2>
-      <h3 className='text-center'>You Score is</h3>
+
+      <h3><Highscore/></h3>
+
     </div>
   );
 };
