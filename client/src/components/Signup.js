@@ -6,6 +6,8 @@ import { ADD_PROFILE } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+import './Login.css';
+
 const Signup = () => {
   const [formState, setFormState] = useState({
     name: '',
@@ -43,7 +45,7 @@ const Signup = () => {
   return (
     <main className='flex-row justify-center mb-4'>
       <div className='col-12 col-lg-10 text-center m-auto'>
-        <div className='card'>
+        <div className='card myLogin'>
           <div className='card-body'>
             {data ? (
               <p>
@@ -51,7 +53,7 @@ const Signup = () => {
                 <Link to='/'>back to the homepage.</Link>
               </p>
             ) : (
-              <form onSubmit={handleFormSubmit}>
+              <form onSubmit={handleFormSubmit} className='form'>
                 <input
                   className='form-input'
                   placeholder='Name'
@@ -77,7 +79,7 @@ const Signup = () => {
                   onChange={handleChange}
                 />
                 <button
-                  className='btn btn-block btn-info'
+                  className='btn btn-block btn-info submitbtn m-auto'
                   style={{ cursor: 'pointer' }}
                   type='submit'
                 >

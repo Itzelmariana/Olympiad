@@ -1,0 +1,26 @@
+.myLogin {
+    background-color: var(--beige);
+    border-style: hidden;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input{
+    margin: 5px;
+}
+
+.submitbtn {
+    color: var(--blue4);
+    background-image: linear-gradient(
+    to bottom,
+    var(--blue1),
+    var(--blue2),
+    var(--blue3)
+  );
+  border-color: var(--blue3);
+  border-width: 2px;
+  border-radius: 20px;
+  width: 40%;
+}
