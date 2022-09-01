@@ -80,7 +80,7 @@ export default function Single() {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [ignoranceScore, setIgnoranceScore] = useState(0);
-  console.log("SCORE: " + score)
+  console.log('SCORE: ' + score);
   // AUTHORIZATION
   const { profileId } = useParams();
   const { loading, data } = useQuery(
@@ -116,7 +116,7 @@ export default function Single() {
     if (isCorrect) {
       setScore(score + 1);
       console.log('correct');
-      console.log("SCORE: " + score)
+      console.log('SCORE: ' + score);
     } else {
       setIgnoranceScore(ignoranceScore + 1);
       console.log('wrong');
@@ -135,21 +135,19 @@ export default function Single() {
     }
   };
 
-  let decodedText = q[currentQuestion].questionText
+  let decodedText = q[currentQuestion].questionText;
   let newDecodedText = he.decode(decodedText);
-  console.log("DECODED: " + newDecodedText)
+  console.log('DECODED: ' + newDecodedText);
 
   return (
     <div className='Single'>
       <div className='question-card-section'>
         {showScore ? (
-          <div className='score-section'>
-            You scored {score}!
-          </div>
+          <div className='score-section'>You scored {score}!</div>
         ) : (
           <>
             <div className='row'>
-              <div className='col-sm-12 col-md-4 col-lg-3'>
+              <div className='col-sm-12 col-md-4 col-lg-2'>
                 <h2 className='btn btn-block myUser'>
                   {profileId ? `${profile.name}'s` : ' '}
                   {profile.name}
@@ -178,7 +176,7 @@ export default function Single() {
                   </div>
                 </div>
               </div>
-              <div className='col-sm-12 col-md-8 col-lg-9'>
+              <div className='col-sm-12 col-md-8 col-lg-10'>
                 <SingleBoard />
               </div>
             </div>
@@ -189,5 +187,4 @@ export default function Single() {
   );
 
   // THIS IS VERY STUPID
-
 }
