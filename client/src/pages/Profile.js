@@ -42,11 +42,13 @@ const Profile = () => {
 
   return (
     <div>
-      <h2 className='card-header'>
+      <h2 className='card-header text-center'>
         {profileId ? `${profile.name}'s` : 'Welcome '}
         {profile.name}
       </h2>
+
       <h3><Highscore/></h3>
+
     </div>
   );
 };

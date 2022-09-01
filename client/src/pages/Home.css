@@ -1,21 +1,21 @@
 :root {
-    --beige: #e8dab2;
-    --beige2: #AEA57B;
-   
-    --blue1: #1DF9F7;
-    --blue2: #16D9E6;
-    --blue3: #0BBDE3;
-    --blue4: #0A5070;
+  --beige: #e8dab2;
+  --beige2: #aea57b;
 
-    --lightPurple: #c6aad3;
-    --purple: #8f54a6;
-    --blue: #3c92c1;
-    --darkBlue: #085aa4;
-    --lightBlue: #b5c6e0;
-    --lightgrey: #ababab;
-    --black: #010101;
+  --blue1: #1df9f7;
+  --blue2: #16d9e6;
+  --blue3: #0bbde3;
+  --blue4: #0a5070;
 
-    /* --burntOrange: #dd6e42;
+  --lightPurple: #c6aad3;
+  --purple: #8f54a6;
+  --blue: #3c92c1;
+  --darkBlue: #293241;
+  --lightBlue: #b5c6e0;
+  --lightgrey: #ababab;
+  --black: #010101;
+
+  /* --burntOrange: #dd6e42;
     --beige: #e8dab2;
     --blue: #4f6d7a;
     --lightblue: #c0d6df;
@@ -23,34 +23,45 @@
 }
 
 .Home {
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-    background-color: var(--beige);
-    border-style: solid;
-    border-color: var(--beige2);
-    border-width: 5px;
-    border-radius: 10px;
-    /* margin: 5%; */
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  background-color: var(--beige);
+  border-style: solid;
+  border-color: var(--beige2);
+  border-width: 15px;
+  border-radius: 35px;
+  margin-top: 100px;
 }
 
 .largeButtons {
-    color: var(--blue4);
-    font-size: 2em;
-    background-image:linear-gradient(to bottom,
-    var(--blue1), 
-    var(--blue2), 
-    var(--blue3));
-    border-style: solid;
-    border-color: var(--blue3);
-    border-width: 2px;
-    border-radius: 20px;
-    width: 65%;
-    padding: 10px;
-    /* margin-top: 0px; */
+  color: var(--blue4);
+  font-size: 2em;
+  background-image: linear-gradient(
+    to bottom,
+    var(--blue1),
+    var(--blue2),
+    var(--blue3)
+  );
+  border-style: solid;
+  border-color: var(--blue3);
+  border-width: 2px;
+  border-radius: 20px;
+  width: 65%;
+  padding: 10px;
+  /* margin-top: 0px; */
 }
 
 body {
-    background-image: url('../images/background.jpg');
-    background-size:cover;
+  background-image: url('../images/bgAni3.gif');
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+@media (max-width: 400px) {
+  .largeButtons {
+    font-size: 25px;
+  }
 }

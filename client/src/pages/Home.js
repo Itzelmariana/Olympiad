@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 
 import logo from '../images/logo.png';
+import gif from '../images/torchGif.gif';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
 
@@ -21,11 +22,13 @@ const Home = () => {
   };
 
   return (
-    <header className='Home  container mh-100 border border-dark'>
+    <header className='Home container border border-dark'>
       <div>
         <Link to='/'>
           <h1 className='align-center text-center'>
-            <img className='m-auto d-none d-sm-block' src={logo} alt='logo' />
+            <img src={gif} alt='gif' width={'100px'} />
+
+            <img className='m-auto d-sm-block' src={logo} alt='logo' />
           </h1>
         </Link>
 
@@ -38,14 +41,14 @@ const Home = () => {
                 </div>
                 <div>
                   <Link to='/singleplayer'>
-                    <button className='btn btn-lg btn-primary m-2 largeButtons'>
+                    <button className='btn btn-lg btn-primary m-2 mb-4 largeButtons'>
                       Single Player
                     </button>
                   </Link>
                 </div>
                 <div>
                   <Link to='/multiplayer'>
-                    <button className='btn btn-lg btn-success m-2 largeButtons'>
+                    <button className='btn btn-lg btn-success m-2 mb-5 largeButtons'>
                       Multi Player
                     </button>
                   </Link>
@@ -80,7 +83,7 @@ const Home = () => {
                     onClick={() => setOpenSignup(!openedSignup)}
                     aria-controls='signup-collapse-form'
                     aria-expanded={openedSignup}
-                    className='btn btn-lg btn-primary m-2 mb-3 largeButtons'
+                    className='btn btn-lg btn-primary m-2  largeButtons'
                   >
                     Signup
                   </Button>
@@ -90,6 +93,7 @@ const Home = () => {
                     </div>
                   </Collapse>
                 </div>
+                <div className='mt-5'></div>
               </div>
             </>
           )}

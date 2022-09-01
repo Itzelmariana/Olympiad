@@ -10,11 +10,28 @@
   width: fit-content;
   text-align: center;
   margin: auto;
+  margin-top: 70px;
+  margin-bottom: 15px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 .Single .myQuestions {
   color: #085aa4;
+  font-weight: 500;
 }
 .Single .myBtn:hover {
   background: #085aa4;
   color: white;
+  border-radius: 10px;
+}
+.Single {
+  background-image: url('../images/bgGame.jpeg');
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Single {
+  background: lightblue url("https://www.pixelstalk.net/wp-content/uploads/2016/06/Wood-Grain-HD-Backgrounds.jpg") no-repeat fixed center;
+
 }
