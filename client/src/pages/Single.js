@@ -103,7 +103,7 @@ export default function Single() {
   if (!profile?.name) {
     return (
       <div>
-        <h4 className='text-center'>
+        <h4 className='text-center myMessage'>
           Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
           the game.
         </h4>

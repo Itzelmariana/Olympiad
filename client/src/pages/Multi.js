@@ -4,6 +4,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
+import './Multi.css';
 
 import Auth from '../utils/auth';
 
@@ -28,8 +29,8 @@ const Multi = () => {
 
   if (!profile?.name) {
     return (
-      <div>
-        <h4 className='text-center'>
+      <div className='Multi'>
+        <h4 className='text-center myMessage'>
           Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
           the game.
         </h4>

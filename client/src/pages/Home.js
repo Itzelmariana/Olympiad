@@ -22,13 +22,18 @@ const Home = () => {
   };
 
   return (
-    <header className='Home container border border-dark'>
+    <header className='Home container'>
       <div>
         <Link to='/'>
           <h1 className='align-center text-center'>
             <img src={gif} alt='gif' width={'100px'} />
 
-            <img className='m-auto d-sm-block' src={logo} alt='logo' />
+            <img
+              className='m-auto d-sm-block'
+              src={logo}
+              alt='logo'
+              width={'70%'}
+            />
           </h1>
         </Link>
 

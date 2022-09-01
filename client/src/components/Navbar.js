@@ -22,7 +22,7 @@ const Navbar = () => {
       </div>
       <div className='col-6 text-right p-4'>
         <Button variant='' onClick={handleShow}>
-          <img src={rules} alt='rules' width={'100px'} />
+          <img src={rules} alt='rules' width={'90px'} />
         </Button>
 
         <Modal show={show} onHide={handleClose}>

@@ -13,21 +13,23 @@ const Footer = () => {
   const handleShow = () => setShow(true);
   return (
     <nav className='row fixed-bottom'>
-      <div className='col-6  p-4'>
+      <div className='col-6  p-4 '>
         <Link to='/'>
-        <img src={home} alt='Home button' width={'100px'} />
+          <img src={home} alt='Home button' width={'90px'} />
         </Link>
       </div>
       <div className='col-6 text-right p-4'>
         <Button variant='' onClick={handleShow}>
-        <img src={donation} alt='Donation button' width={'100px'} />
+          <img src={donation} alt='Donation button' width={'90px'} />
         </Button>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header>
             <Modal.Title>Support our project</Modal.Title>
           </Modal.Header>
-          <Modal.Body><Donation/></Modal.Body>
+          <Modal.Body>
+            <Donation />
+          </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
               Close
