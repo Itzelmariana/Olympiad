@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Canvas from '../components/Canvas';
 import { Link } from 'react-router-dom';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -8,6 +9,19 @@ import SingleBoard from '../components/SingleBoard';
 import Auth from '../utils/auth';
 
 import './Single.css';
+import io from 'socket.io-client';
+const socket = io.connect("http://localhost:3002")
+
+
+socket.on('connectToRoom', function (data) {
+  console.log(`Connected to room ${data}`);
+
+
+  // socket.on("move", (data) => {
+  //   console.log(data);
+  // });
+});
+
 
 const questionArray = require('./q');
 var he = require('he');
@@ -110,28 +124,25 @@ export default function Single() {
       </div>
     );
   }
-
+  // let twentyFive = 5;
   // HANDLE ANSWER OPTIONS WHEN CLICKED
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1);
-      console.log('correct');
-      console.log("SCORE: " + score)
+      // console.log('correct');
+      // console.log("SCORE: " + score)
+      // console.log(user_connection);
+      socket.emit("move", "move signal sent")
     } else {
       setIgnoranceScore(ignoranceScore + 1);
       console.log('wrong');
     }
-
     const nextQuestion = currentQuestion;
-
-    if (nextQuestion < 50) {
-      if (score > 9) {
-        setShowScore(true);
-      } else if (ignoranceScore > 9) {
-        setShowScore(true);
-      }
+    if (nextQuestion < 50 && score < 2) {
       getQuestion();
       setCurrentQuestion(currentQuestion + 1);
+    } else {
+      setShowScore(true);
     }
   };
 
@@ -180,6 +191,7 @@ export default function Single() {
               </div>
               <div className='col-sm-12 col-md-8 col-lg-9'>
                 <SingleBoard />
+                <Canvas />
               </div>
             </div>
           </>
@@ -187,7 +199,4 @@ export default function Single() {
       </div>
     </div>
   );
-
-  // THIS IS VERY STUPID
-
 }
