@@ -13,8 +13,22 @@ import Signup from '../components/Signup';
 import './Home.css';
 
 const Home = () => {
-  const [open, setOpen] = useState(false);
-  const [openedSignup, setOpenSignup] = useState(false);
+  const [state, setState] = useState({
+    signupOpen: false,
+    loginOpen: false,
+  });
+  const signupClickHandler = () => {
+    setState({
+      loginOpen: false,
+      signupOpen: !state.signupOpen,
+    });
+  };
+  const loginClickHandler = () => {
+    setState({
+      loginOpen: !state.loginOpen,
+      signupOpen: false,
+    });
+  };
 
   const logout = (event) => {
     event.preventDefault();
@@ -32,7 +46,7 @@ const Home = () => {
               className='m-auto d-sm-block'
               src={logo}
               alt='logo'
-              width={'70%'}
+              width={'60%'}
             />
           </h1>
         </Link>
@@ -42,7 +56,9 @@ const Home = () => {
             <>
               <div className='align-center text-center'>
                 <div className='welcome'>
-                  <Link to='/me'>Welcome {Auth.getProfile().data.name}</Link>
+                  <Link to='/me' className='myLink'>
+                    Welcome {Auth.getProfile().data.name}
+                  </Link>
                 </div>
                 <div>
                   <Link to='/singleplayer'>
@@ -70,14 +86,14 @@ const Home = () => {
               <div className='align-center text-center'>
                 <div>
                   <Button
-                    onClick={() => setOpen(!open)}
+                    onClick={loginClickHandler}
                     aria-controls='login-collapse-form'
-                    aria-expanded={open}
+                    aria-expanded={state.loginOpen}
                     className='btn btn-lg btn-primary m-2 largeButtons'
                   >
                     Login
                   </Button>
-                  <Collapse in={open}>
+                  <Collapse in={state.loginOpen}>
                     <div id='login-collapse-form'>
                       <Login />{' '}
                     </div>
@@ -85,14 +101,14 @@ const Home = () => {
                 </div>
                 <div className='mt-3'>
                   <Button
-                    onClick={() => setOpenSignup(!openedSignup)}
+                    onClick={signupClickHandler}
                     aria-controls='signup-collapse-form'
-                    aria-expanded={openedSignup}
+                    aria-expanded={state.signupOpen}
                     className='btn btn-lg btn-primary m-2  largeButtons'
                   >
                     Signup
                   </Button>
-                  <Collapse in={openedSignup}>
+                  <Collapse in={state.signupOpen}>
                     <div id='signup-collapse-form'>
                       <Signup />
                     </div>

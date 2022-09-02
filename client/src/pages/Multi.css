@@ -2,3 +2,21 @@
 .myWrongPage {
   margin-top: 150px;
 }
+.Multi {
+  background-image: url('../images/bgGame.jpeg');
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+.myMultiUser {
+  margin-top: 150px;
+  color: aliceblue;
+}
+.Multi .myMultiBoard {
+  margin-top: 150px;
+  color: aliceblue;
+}
+.Multi .myMultiOther {
+  margin-top: 150px;
+  color: aliceblue;
+}

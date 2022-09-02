@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useLocation, useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
+import home from '../images/home.png';
+
+import DonationNav from './DonationNav';
+
 import rules from '../images/rules.png';
 
 const Navbar = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <nav className='row fixed-top'>
-      <div className='col-6 p-4'>
-        {location.pathname !== '/' && (
-          <button className='btn btn-dark mb-3' onClick={() => navigate(-1)}>
-            &larr;
-          </button>
-        )}
+    <div className=' Navbar row fixed-top'>
+      <div className='homeNav col col-md-8 col-lg-9 pr-2'>
+        <Link to='/'>
+          <img src={home} alt='Home button' width={'90px'} />
+        </Link>
       </div>
-      <div className='col-6 text-right p-4'>
+
+      <div className='donationNav col col-md-2 col-lg-1'>
+        <DonationNav />
+      </div>
+      <div className='rulesNav col col-md-2 col-lg-2'>
         <Button variant='' onClick={handleShow}>
           <img src={rules} alt='rules' width={'90px'} />
         </Button>
@@ -37,7 +42,7 @@ const Navbar = () => {
           </Modal.Footer>
         </Modal>
       </div>
-    </nav>
+    </div>
   );
 };
 

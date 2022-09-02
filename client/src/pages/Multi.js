@@ -20,7 +20,7 @@ const Multi = () => {
   const profile = data?.me || data?.profile || {};
 
   if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Navigate to='/singleplayer' />;
+    return <Navigate to='/multiplayer' />;
   }
 
   if (loading) {
@@ -29,7 +29,7 @@ const Multi = () => {
 
   if (!profile?.name) {
     return (
-      <div className='Multi'>
+      <div>
         <h4 className='text-center myMessage'>
           Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
           the game.
@@ -38,6 +38,23 @@ const Multi = () => {
     );
   }
 
-  return <div>Multiplayer will go here</div>;
+  return (
+    <div className='Multi'>
+      <div className='row text-center'>
+        <div className='col-sm-12 col-md-3 col-lg-2'>
+          <h2 className='btn btn-block myMultiUser'>
+            {profileId ? `${profile.name}'s` : ' '}
+            {profile.name}
+          </h2>
+        </div>
+        <div className='col-sm-12 col-md-6 col-lg-8 myMultiBoard'>
+          Hi I will be a multiplayer board
+        </div>
+        <div className='col-sm-12 col-md-3 col-lg-2 myMultiOther'>
+          Other User
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Multi;

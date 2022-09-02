@@ -23,7 +23,7 @@
 }
 
 .Home {
-  width: 65%;
+  width: 45%;
   background-color: var(--beige);
   border-style: solid;
   border-color: var(--beige2);
@@ -56,7 +56,6 @@ body {
   background-size: cover;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
 }
 
 .welcome {
@@ -64,11 +63,15 @@ body {
   font-size: 2em;
 }
 
-@media (max-width: 500px) {
+.welcome .myLink:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 715px) {
   .largeButtons {
     font-size: 25px;
   }
-  body {
-    overflow: visible !important;
+  .Home {
+    width: 85%;
   }
 }
