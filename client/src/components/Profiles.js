@@ -1,35 +1,26 @@
-import React from 'react'
+import React from 'react';
 
-export default function Profiles({Leaderboard}){
-    return(
-        <div id='Profile'>
-            {item(Leaderboard)}
-        </div>
-    )
-}
+const ProfileList = ({ profiles }) => {
+  if (!profiles.length) {
+    return <h3>No Profiles Yet</h3>;
+  }
 
-function item(data){
-    return(
-
-        <>
-        {
-            data.map((value,index)=>(
-                <div className='flex' key={index}>
-                <div className='item'>
-    
-                    <div className='info'>
-                        <h3 className='name text-dark'>{value.name}</h3>
-                        <span>{value.location}</span>
-                    </div>
-                </div>
-                <div className='item'>
-                    <span>{value.score}</span>
-                </div>
+  return (
+    <div>
+      <div className='flex-row justify-space-between my-4'>
+        {profiles &&
+          profiles.map((profile) => (
+            <div key={profile._id} className='col-12 col-xl-6'>
+              <div>
+                <h4 className='text-center'>
+                  {profile.name} <br />
+                </h4>
+              </div>
             </div>
-            )
-            )
-        }
-        </>
+          ))}
+      </div>
+    </div>
+  );
+};
 
-    )
-}
+export default ProfileList;
