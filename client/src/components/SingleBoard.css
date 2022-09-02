@@ -2,3 +2,9 @@
   color: white;
   margin-top: 80px;
 }
+@media (max-width: 715px) {
+  .SingleBoard {
+    color: white;
+    margin-top: 5px;
+  }
+}

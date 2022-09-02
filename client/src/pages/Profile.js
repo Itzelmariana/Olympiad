@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
+import './Profile.css';
 import Auth from '../utils/auth';
 import Highscore from '../components/Highscore';
 
@@ -32,7 +33,7 @@ const Profile = () => {
   if (!profile?.name) {
     return (
       <div>
-        <h4 className='text-center'>
+        <h4 className='text-center myMessage'>
           Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
           the game.
         </h4>
@@ -42,13 +43,14 @@ const Profile = () => {
 
   return (
     <div>
-      <h2 className='card-header text-center'>
+      <h2 className='card-header text-center myStats'>
         {profileId ? `${profile.name}'s` : 'Welcome '}
         {profile.name}
       </h2>
 
-      <h3><Highscore/></h3>
-
+      <h3>
+        <Highscore />
+      </h3>
     </div>
   );
 };

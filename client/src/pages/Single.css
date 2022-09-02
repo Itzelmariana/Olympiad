@@ -10,7 +10,7 @@
   width: fit-content;
   text-align: center;
   margin: auto;
-  margin-top: 70px;
+  margin-top: 110px;
   margin-bottom: 15px;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -31,7 +31,6 @@
   height: 100vh;
 }
 
-.Single {
-  background: lightblue url("https://www.pixelstalk.net/wp-content/uploads/2016/06/Wood-Grain-HD-Backgrounds.jpg") no-repeat fixed center;
-
+.myMessage {
+  margin-top: 160px;
 }

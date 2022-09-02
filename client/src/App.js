@@ -13,8 +13,6 @@ import Profile from './pages/Profile';
 import Single from './pages/Single';
 import Multi from './pages/Multi';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 const httpLink = createHttpLink({
@@ -43,12 +41,9 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          {' '}
           <Navbar />
         </div>
         <div className='App'>
-          <Header />
-
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/multiplayer' element={<Multi />} />
@@ -56,11 +51,10 @@ function App() {
             <Route path='/me' element={<Profile />} />
             <Route
               path='*'
-              element={<h1 className='display-2 text-center'>Wrong page!</h1>}
+              element={<h1 className='text-center myWrongPage'>Wrong page!</h1>}
             />
           </Routes>
         </div>
-        <Footer />
       </Router>
     </ApolloProvider>
   );
