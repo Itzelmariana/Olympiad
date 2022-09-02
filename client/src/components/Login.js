@@ -72,7 +72,7 @@ const Login = (props) => {
                     onChange={handleChange}
                   />
                   <button
-                    className='btn btn-block btn-info submitbtn m-auto'
+                    className='btn btn-block btn-info submitbtnGreen m-auto'
                     style={{ cursor: 'pointer' }}
                     type='submit'
                   >

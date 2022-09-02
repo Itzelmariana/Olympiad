@@ -24,3 +24,17 @@
   border-radius: 20px;
   width: 40%;
 }
+
+.submitbtnGreen {
+    color: var(--green4);
+    background-image: linear-gradient(
+    to bottom,
+    var(--green1),
+    var(--green2),
+    var(--green3)
+  );
+  border-color: var(--green3);
+  border-width: 2px;
+  border-radius: 20px;
+  width: 40%;
+}
