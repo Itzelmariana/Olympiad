@@ -32,6 +32,17 @@
     --grey: #eaeaea; */
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .Home {
   width: 45%;
   background-color: var(--beige);

@@ -29,12 +29,12 @@ let answerOptions = [];
 // CORRECT ANSWER TO COMPARE CHOICE TO
 let correct = [];
 function getQuestion() {
+  // GET RANDOM NUMBER
   let randomQuestion = Math.floor(Math.random() * 49);
   console.log('random' + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
   let qa = questionArray.default[randomQuestion];
   answerOptions = [];
-  // GET RANDOM NUMBER
 
   console.log(qa);
 
@@ -45,14 +45,15 @@ function getQuestion() {
       isCorrect: false,
     });
   }
+  // PUSH CORRECT ANSWER TO ARRAY
   answerOptions.push({ answerText: qa.correct_answer, isCorrect: true });
 
   correct.push({ answerText: qa.correct_answer, isCorrect: true });
   // console.log("Answers: " + q);
   // console.log("Correct Answer:" + correct);
-
+  // PUSH QUESTION TEXT AND ANSWERS TO SAME PLACE
   q.push({ questionText: qa.question, answerOptions });
-
+  // SHUFFLE THE ANSWERS INDEXES
   shuffle(answerOptions);
 
   console.log('ANSWER OPTIONS: ');
@@ -121,25 +122,19 @@ export default function Single() {
       </div>
     );
   }
-  // let twentyFive = 5;
   // HANDLE ANSWER OPTIONS WHEN CLICKED
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1);
-      // console.log('correct');
-      // console.log("SCORE: " + score)
-      // console.log(user_connection);
-      // socket.emit("move", "move signal sent")
       location = location + (screenWidth / 10);
-      
     } else {
       setIgnoranceScore(ignoranceScore + 1);
       console.log('wrong');
       locationOpponent = locationOpponent - (screenWidth / 10);
     }
     const nextQuestion = currentQuestion;
-    if (nextQuestion < 50 && score < 2) {
+    if (nextQuestion < 50 && score < 10 && ignoranceScore < 10) {
       getQuestion();
       setCurrentQuestion(currentQuestion + 1);
     } else {
@@ -152,17 +147,44 @@ export default function Single() {
   console.log("DECODED: " + newDecodedText)
 
   let props = {
-    location:{location},
-    locationOpponent: {locationOpponent}
-    }
+    location: { location },
+    locationOpponent: { locationOpponent }
+  }
 
   return (
     <div className='Single'>
       <div className='question-card-section'>
         {showScore ? (
-          <div className='score-section'>
-            You scored {score}!
-          </div>
+          <div className='row'>
+              <div className='col-sm-12 col-md-4 col-lg-3'>
+                <h2 className='btn btn-block myUser'>
+                  {profileId ? `${profile.name}'s` : ' '}
+                  {profile.name}
+                </h2>
+                <div className=' m-2 p-3 shadow p-3 mb-5 bg-white text-center myCard'>
+                  <div className='question-section'>
+                    <div className='question-count'>
+                      <span>SCORE</span>
+                    </div>
+                    <div className='question-text myQuestions'>
+                      You answered {score} questions correctly!
+                    </div>
+                  </div>
+                  <div className='answer-sections'>
+                    {/* {q[currentQuestion].answerOptions.map((answerOption) => (
+                      <button
+                        className=' btn btn-block myBtn'>
+                        {he.decode(answerOption.answerText)}
+                      </button>
+                    ))} */}
+                  </div>
+                </div>
+              </div>
+              <div className='col-sm-12 col-md-8 col-lg-9'>
+                <SingleBoard />
+                <Canvas  {...props} />
+              </div>
+            </div>
         ) : (
           <>
             <div className='row'>
@@ -197,7 +219,7 @@ export default function Single() {
               </div>
               <div className='col-sm-12 col-md-8 col-lg-9'>
                 <SingleBoard />
-                <Canvas  {...props}/>
+                <Canvas  {...props} />
               </div>
             </div>
           </>
