@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Canvas from '../components/Canvas';
 import { Link } from 'react-router-dom';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
@@ -8,6 +9,16 @@ import SingleBoard from '../components/SingleBoard';
 import Auth from '../utils/auth';
 
 import './Single.css';
+import io from 'socket.io-client';
+const socket = io.connect("http://localhost:3002")
+
+let screenWidth = window.innerWidth / 2;
+let screenHeight = window.innerHeight / 2;
+// socket.on("spMove", (data) => {
+//   console.log("SINGLE PAGE IDK WHY");
+// });
+let location = 0;
+let locationOpponent = (screenWidth / 10) * 9;
 
 const questionArray = require('./q');
 var he = require('he');
@@ -80,7 +91,7 @@ export default function Single() {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [ignoranceScore, setIgnoranceScore] = useState(0);
-  console.log('SCORE: ' + score);
+  console.log("SCORE: " + score)
   // AUTHORIZATION
   const { profileId } = useParams();
   const { loading, data } = useQuery(
@@ -103,51 +114,59 @@ export default function Single() {
   if (!profile?.name) {
     return (
       <div>
-        <h4 className='text-center myMessage'>
+        <h4 className='text-center'>
           Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
           the game.
         </h4>
       </div>
     );
   }
-
+  // let twentyFive = 5;
   // HANDLE ANSWER OPTIONS WHEN CLICKED
+
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1);
-      console.log('correct');
-      console.log('SCORE: ' + score);
+      // console.log('correct');
+      // console.log("SCORE: " + score)
+      // console.log(user_connection);
+      // socket.emit("move", "move signal sent")
+      location = location + (screenWidth / 10);
+      
     } else {
       setIgnoranceScore(ignoranceScore + 1);
       console.log('wrong');
+      locationOpponent = locationOpponent - (screenWidth / 10);
     }
-
     const nextQuestion = currentQuestion;
-
-    if (nextQuestion < 50) {
-      if (score > 9) {
-        setShowScore(true);
-      } else if (ignoranceScore > 9) {
-        setShowScore(true);
-      }
+    if (nextQuestion < 50 && score < 2) {
       getQuestion();
       setCurrentQuestion(currentQuestion + 1);
+    } else {
+      setShowScore(true);
     }
   };
 
-  let decodedText = q[currentQuestion].questionText;
+  let decodedText = q[currentQuestion].questionText
   let newDecodedText = he.decode(decodedText);
-  console.log('DECODED: ' + newDecodedText);
+  console.log("DECODED: " + newDecodedText)
+
+  let props = {
+    location:{location},
+    locationOpponent: {locationOpponent}
+    }
 
   return (
     <div className='Single'>
       <div className='question-card-section'>
         {showScore ? (
-          <div className='score-section'>You scored {score}!</div>
+          <div className='score-section'>
+            You scored {score}!
+          </div>
         ) : (
           <>
             <div className='row'>
-              <div className='col-sm-12 col-md-4 col-lg-2'>
+              <div className='col-sm-12 col-md-4 col-lg-3'>
                 <h2 className='btn btn-block myUser'>
                   {profileId ? `${profile.name}'s` : ' '}
                   {profile.name}
@@ -176,8 +195,9 @@ export default function Single() {
                   </div>
                 </div>
               </div>
-              <div className='col-sm-12 col-md-8 col-lg-10'>
+              <div className='col-sm-12 col-md-8 col-lg-9'>
                 <SingleBoard />
+                <Canvas  {...props}/>
               </div>
             </div>
           </>
@@ -185,6 +205,4 @@ export default function Single() {
       </div>
     </div>
   );
-
-  // THIS IS VERY STUPID
 }
