@@ -9,6 +9,7 @@ import logo from '../images/logo.png';
 import gif from '../images/torchGif.gif';
 import Login from '../components/Login';
 import Signup from '../components/Signup';
+import logoutIcon from '../images/logout.png';
 
 import './Home.css';
 
@@ -57,27 +58,29 @@ const Home = () => {
               <div className='align-center text-center'>
                 <div className='welcome'>
                   <Link to='/me' className='myLink'>
-                    Welcome {Auth.getProfile().data.name}
+                    <button className='btn btn-lg btn-primary m-2 mb-4 largeButtonYellow'>
+                      Welcome {Auth.getProfile().data.name}
+                    </button>
                   </Link>
                 </div>
                 <div>
                   <Link to='/singleplayer'>
-                    <button className='btn btn-lg btn-primary m-2 mb-4 largeButtons'>
+                    <button className='btn btn-lg btn-primary m-2 mb-4 largeButtonGreen'>
                       Single Player
                     </button>
                   </Link>
                 </div>
                 <div>
                   <Link to='/multiplayer'>
-                    <button className='btn btn-lg btn-success m-2 mb-5 largeButtons'>
+                    <button className='btn btn-lg btn-success m-2 mb-5 largeButtonBlue'>
                       Multi Player
                     </button>
                   </Link>
                 </div>
               </div>
               <div className=' text-right'>
-                <button className='btn btn-lg btn-light m-2' onClick={logout}>
-                  Logout
+                <button className='btn btn-lg m-2' onClick={logout}>
+                <img src={logoutIcon} alt='logout' width={'60px'} />
                 </button>
               </div>
             </>
@@ -89,7 +92,7 @@ const Home = () => {
                     onClick={loginClickHandler}
                     aria-controls='login-collapse-form'
                     aria-expanded={state.loginOpen}
-                    className='btn btn-lg btn-primary m-2 largeButtons'
+                    className='btn btn-lg btn-primary m-2 largeButtonGreen'
                   >
                     Login
                   </Button>
@@ -104,7 +107,7 @@ const Home = () => {
                     onClick={signupClickHandler}
                     aria-controls='signup-collapse-form'
                     aria-expanded={state.signupOpen}
-                    className='btn btn-lg btn-primary m-2  largeButtons'
+                    className='btn btn-lg btn-primary m-2  largeButtonBlue'
                   >
                     Signup
                   </Button>

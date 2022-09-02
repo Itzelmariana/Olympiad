@@ -2,6 +2,16 @@
   --beige: #e8dab2;
   --beige2: #aea57b;
 
+  --yellow1: #FCF140;
+  --yellow2: #FEEA3B;
+  --yellow3: #FDCA34;
+  --orange: #E19837;
+
+  --green1: #D6F416;
+  --green2: #B0E71A;
+  --green3: #7AD814;
+  --green4: #496D12;
+
   --blue1: #1df9f7;
   --blue2: #16d9e6;
   --blue3: #0bbde3;
@@ -32,15 +42,47 @@
   margin-top: 100px;
 }
 
-.largeButtons {
+.largeButtonYellow {
+  color: var(--orange);
+  font-size: 2em;
+  background-image: linear-gradient(to bottom,
+      var(--yellow1),
+      var(--yellow2),
+      var(--yellow3));
+  border-style: solid;
+  border-color: var(--yellow3);
+  border-width: 2px;
+  border-radius: 20px;
+  width: 65%;
+  padding: 10px;
+  /* margin-top: 0px; */
+  z-index: 2;
+}
+
+.largeButtonGreen {
+  color: var(--green4);
+  font-size: 2em;
+  background-image: linear-gradient(to bottom,
+      var(--green1),
+      var(--green2),
+      var(--green3));
+  border-style: solid;
+  border-color: var(--green3);
+  border-width: 2px;
+  border-radius: 20px;
+  width: 65%;
+  padding: 10px;
+  /* margin-top: 0px; */
+  z-index: 2;
+}
+
+.largeButtonBlue {
   color: var(--blue4);
   font-size: 2em;
-  background-image: linear-gradient(
-    to bottom,
-    var(--blue1),
-    var(--blue2),
-    var(--blue3)
-  );
+  background-image: linear-gradient(to bottom,
+      var(--blue1),
+      var(--blue2),
+      var(--blue3));
   border-style: solid;
   border-color: var(--blue3);
   border-width: 2px;
@@ -58,10 +100,10 @@ body {
   width: 100vw;
 }
 
-.welcome {
+/* .welcome {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 2em;
-}
+} */
 
 .welcome .myLink:hover {
   text-decoration: none;
@@ -71,6 +113,7 @@ body {
   .largeButtons {
     font-size: 25px;
   }
+
   .Home {
     width: 85%;
   }
