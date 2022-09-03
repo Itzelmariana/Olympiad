@@ -19,6 +19,14 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  win: {
+    type: Number,
+    default: 0,
+  },
+  lose: {
+    type: Number,
+    default: 0,
+  },
 });
 
 // set up pre-save middleware to create password

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Canvas from '../components/Canvas';
 import { Link } from 'react-router-dom';
 import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-// import SingleBoard from '../components/SingleBoard';
+import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
+
+import SingleBoard from '../components/SingleBoard';
 import Auth from '../utils/auth';
 import './Single.css';
 
@@ -101,7 +103,29 @@ function shuffle(array) {
 
 // REACT BS STARTS HERE
 export default function Single() {
+  const [callAddWinApi, { error }] = useMutation(ADD_WIN);
 
+  const addWin = async () => {
+    try {
+      await callAddWinApi({
+        variables: { win: 1 },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const [callAddLoseApi, { errorLoss }] = useMutation(ADD_LOSE);
+
+  const addLose = async () => {
+    try {
+      await callAddLoseApi({
+        variables: { lose: 1 },
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
   useEffect(() => {
     getQuestion();
   }, []);
@@ -110,7 +134,7 @@ export default function Single() {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [ignoranceScore, setIgnoranceScore] = useState(0);
-  console.log("SCORE: " + score)
+  console.log('SCORE: ' + score);
   // AUTHORIZATION
   const { profileId } = useParams();
   const { loading, data } = useQuery(
@@ -133,7 +157,7 @@ export default function Single() {
   if (!profile?.name) {
     return (
       <div>
-        <h4 className='text-center'>
+        <h4 className='text-center myMessage'>
           Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
           the game.
         </h4>
@@ -145,29 +169,35 @@ export default function Single() {
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
       setScore(score + 1);
-      location = location + (screenWidth / 10);
+      location = location + screenWidth / 10;
     } else {
       setIgnoranceScore(ignoranceScore + 1);
       console.log('wrong');
-      locationOpponent = locationOpponent - (screenWidth / 10);
+      locationOpponent = locationOpponent - screenWidth / 10;
     }
     const nextQuestion = currentQuestion;
-    if (nextQuestion < 50 && score < 10 && ignoranceScore < 10) {
+    if (nextQuestion < 50 && score < 9 && ignoranceScore < 9) {
       getQuestion();
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowScore(true);
+
+      if (score === 10) {
+        addWin();
+      } else {
+        addLose();
+      }
     }
   };
 
-  let decodedText = q[currentQuestion].questionText
+  let decodedText = q[currentQuestion].questionText;
   let newDecodedText = he.decode(decodedText);
-  console.log("DECODED: " + newDecodedText)
+  console.log('DECODED: ' + newDecodedText);
 
   let props = {
     location: { location },
-    locationOpponent: { locationOpponent }
-  }
+    locationOpponent: { locationOpponent },
+  };
 
   return (
     <div className='Single'>
@@ -185,7 +215,17 @@ export default function Single() {
                     <span>SCORE</span>
                   </div>
                   <div className='question-text myQuestions'>
-                    You answered {score} questions correctly!
+                    {score < 10 ? (
+                      <div>
+                        You answered {score} questions correctly! You LOST the
+                        game!
+                      </div>
+                    ) : (
+                      <div>
+                        You answered {score} questions correctly!You WON the
+                        game{' '}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className='answer-sections'>
@@ -206,12 +246,12 @@ export default function Single() {
         ) : (
           <>
             <div className='row'>
-              <div className='col-sm-12 col-md-4 col-lg-3'>
+              <div className='col-sm-12 col-md-4 col-lg-3 text-center'>
                 <h2 className='btn btn-block myUser'>
                   {profileId ? `${profile.name}'s` : ' '}
                   {profile.name}
                 </h2>
-                <div className=' m-2 p-3 shadow p-3 mb-5 bg-white text-center myCard'>
+                <div className=' ml-4 mr-4 p-3 shadow mb-1 bg-white text-center myCard'>
                   <div className='question-section'>
                     <div className='question-count'>
                       <span>Question {currentQuestion + 1}</span>
@@ -235,9 +275,9 @@ export default function Single() {
                   </div>
                 </div>
               </div>
-              <div className='col-sm-12 col-md-8 col-lg-9'>
-                {/* <SingleBoard /> */}
-                <Canvas  {...props} />
+              <div className='col-sm-12 col-md-8 col-lg-9 sBoard'>
+                <SingleBoard />
+                <Canvas {...props} />
               </div>
             </div>
           </>

@@ -43,6 +43,32 @@ const resolvers = {
       const token = signToken(profile);
       return { token, profile };
     },
+    addWin: async (parent, { win }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $inc: { win: win },
+          },
+          {
+            new: true,
+          }
+        );
+      }
+    },
+    addLose: async (parent, { lose }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $inc: { lose: lose },
+          },
+          {
+            new: true,
+          }
+        );
+      }
+    },
   },
 };
 

@@ -1,0 +1,29 @@
+.Highscores {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100vh;
+}
+
+.Highscores h1 {
+  color: var(--darkBlue);
+}
+.Highscores p {
+  color: whitesmoke;
+  background: var(--orange);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.myScore {
+  border: 5px solid var(--beige2);
+  margin-left: 20px;
+  margin-right: 20px;
+  background: var(--beige);
+  border-radius: 20px;
+}
+.myUsersScores {
+  background: var(--beige);
+  border-radius: 20px;
+  border: 5px solid var(--beige2);
+  margin-right: 20px;
+  margin-left: 20px;
+}
