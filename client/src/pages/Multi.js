@@ -8,6 +8,15 @@ import './Multi.css';
 
 import Auth from '../utils/auth';
 
+
+// const socket = io.connect("http://localhost:3002");
+import io from 'socket.io-client';
+import {
+  getQueryParameter,
+  getRandomString,
+  updateQueryParameter,
+} from '../utils';
+
 const Multi = () => {
   const { profileId } = useParams();
   const { loading, data } = useQuery(
@@ -37,6 +46,44 @@ const Multi = () => {
       </div>
     );
   }
+
+
+
+
+const room = getQueryParameter('room') || getRandomString(5);
+let socket = io(`localhost:3002/?room=${room}`);
+
+window.history.replaceState(
+  {},
+  document.title,
+  updateQueryParameter('room', room),
+);
+socket.on('playerJoined', () => {
+  console.log('playerJoined');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
   return (
     <div className='Multi'>
