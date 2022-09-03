@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 // Open a WebSocket to the origin server.
-import io from 'socket.io-client';
-const socket = io.connect("http://localhost:3002")
-
+//import io from 'socket.io-client';
+//const socket = io.connect("http://localhost:3002")
 
 let screenWidth = window.innerWidth / 2;
 let screenHeight = window.innerHeight / 2;
-
 
 setInterval(() => {
   const sizeBoard = document.querySelector('canvas');
@@ -22,7 +20,6 @@ setInterval(() => {
 // let newX = 0;
 let newY = 0;
 
-
 const Canvas = (props) => {
   console.log(props.location.location);
   console.log(props.locationOpponent.locationOpponent);
@@ -30,15 +27,14 @@ const Canvas = (props) => {
   const [newX, setNewX] = useState(0);
   const [newOpponentX, setNewOpponentX] = useState(0);
   useEffect(() => {
-
     const ctx = canvas.current.getContext('2d');
-    setNewX(props.location.location, newX)
-    setNewOpponentX(props.locationOpponent.locationOpponent, newOpponentX)
+    setNewX(props.location.location, newX);
+    setNewOpponentX(props.locationOpponent.locationOpponent, newOpponentX);
     const pawn = new Image();
-    pawn.src = '/pawn.png'
+    pawn.src = '/pawn.png';
 
     const pawn2 = new Image();
-    pawn2.src = '/pawn.png'
+    pawn2.src = '/pawn.png';
 
     class Token {
       constructor() {
@@ -46,7 +42,13 @@ const Canvas = (props) => {
         this.y = 0 + newY;
       }
       exist() {
-        ctx.drawImage(pawn, newX, newY, (window.innerWidth / 10) / 2, (window.innerHeight / 5) / 2);
+        ctx.drawImage(
+          pawn,
+          newX,
+          newY,
+          window.innerWidth / 10 / 2,
+          window.innerHeight / 5 / 2
+        );
       }
       update() {
         if (this.x) {
@@ -66,7 +68,13 @@ const Canvas = (props) => {
         this.y = (screenHeight / 10) * 8;
       }
       exist() {
-        ctx.drawImage(pawn2, newOpponentX, this.y, (window.innerWidth / 10) / 2, (window.innerHeight / 5) / 2);
+        ctx.drawImage(
+          pawn2,
+          newOpponentX,
+          this.y,
+          window.innerWidth / 10 / 2,
+          window.innerHeight / 5 / 2
+        );
       }
       update() {
         if (this.x) {
@@ -80,7 +88,7 @@ const Canvas = (props) => {
     }
 
     function draw() {
-      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
       // console.log('draw');
 
       // Create gradient
@@ -98,15 +106,14 @@ const Canvas = (props) => {
       // Create vertical grid lines
       for (let i = 0; i <= 10; i++) {
         ctx.beginPath();
-        ctx.moveTo(screenWidth / 10 * i, 0);
-        ctx.lineTo(screenWidth / 10 * i, screenHeight);
+        ctx.moveTo((screenWidth / 10) * i, 0);
+        ctx.lineTo((screenWidth / 10) * i, screenHeight);
         ctx.stroke();
       }
       player.update();
       opponent.update();
       // socket.emit("move", { player })
       requestAnimationFrame(draw);
-
     }
     const player = new Token();
     const opponent = new Opponent();
@@ -128,18 +135,17 @@ const Canvas = (props) => {
       then = now - (elapsed % fpsInterval);
       draw();
     }
-  }, [props.location.location, newX, props.locationOpponent.locationOpponent,newOpponentX])
+  }, [
+    props.location.location,
+    newX,
+    props.locationOpponent.locationOpponent,
+    newOpponentX,
+  ]);
   // ============================================
 
   // CREATES THE CANVAS
-  return (
-    <canvas
-      ref={canvas}
-      width={screenWidth}
-      height={screenHeight}
-    />
-  )
+  return <canvas ref={canvas} width={screenWidth} height={screenHeight} />;
   // =========================
-}
+};
 
 export default Canvas;

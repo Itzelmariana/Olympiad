@@ -2,21 +2,29 @@
   {
     "name": "Itzel",
     "email": "itzel@email.com",
-    "password": "password1234."
+    "password": "password1234.",
+    "win": "1",
+    "lose": "3"
   },
   {
     "name": "Brenda",
     "email": "brenda@email.com",
-    "password": "password1234."
+    "password": "password1234.",
+    "win": "2",
+    "lose": "1"
   },
   {
     "name": "Dustin",
     "email": "dustin@email.com",
-    "password": "password1234."
+    "password": "password1234.",
+    "win": "3",
+    "lose": "0"
   },
   {
     "name": "Aaron",
     "email": "aaron@email.com",
-    "password": "password1234."
+    "password": "password1234.",
+    "win": "3",
+    "lose": "5"
   }
 ]

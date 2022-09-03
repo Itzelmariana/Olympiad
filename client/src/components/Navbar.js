@@ -16,13 +16,13 @@ const Navbar = () => {
   const handleShow = () => setShow(true);
   return (
     <div className=' Navbar row fixed-top'>
-      <div className='homeNav col col-md-8 col-lg-9 pr-2'>
+      <div className='homeNav col col-md-8 col-lg-8 pr-2'>
         <Link to='/'>
           <img src={home} alt='Home button' width={'90px'} />
         </Link>
       </div>
 
-      <div className='donationNav col col-md-2 col-lg-1'>
+      <div className='donationNav col col-md-2 col-lg-2 text-right'>
         <DonationNav />
       </div>
       <div className='rulesNav col col-md-2 col-lg-2'>

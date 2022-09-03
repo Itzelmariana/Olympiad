@@ -44,12 +44,12 @@ const Profile = () => {
   return (
     <div>
       <h2 className='card-header text-center myStats'>
-        {profileId ? `${profile.name}'s` : 'Welcome '}
-        {profile.name}
+        {profileId ? `${profile.name}'s` : 'Welcome, '}
+        {profile.name}!
       </h2>
 
       <h3>
-        <Highscore />
+        <Highscore profile={profile} />
       </h3>
     </div>
   );
