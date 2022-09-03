@@ -5,12 +5,29 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-import SingleBoard from '../components/SingleBoard';
+// import SingleBoard from '../components/SingleBoard';
 import Auth from '../utils/auth';
-
 import './Single.css';
-import io from 'socket.io-client';
-const socket = io.connect("http://localhost:3002")
+
+
+
+
+
+import axios from "axios";
+
+
+
+
+const url = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple";
+const questionArray = [];
+axios.get(url)
+  .then((response) => {
+    for (let i = 0; i < response.data.results.length; i++) {
+      questionArray.push(response.data.results[i])
+    }
+  }).then(()=>{
+    console.log(questionArray)
+  });
 
 let screenWidth = window.innerWidth / 2;
 let screenHeight = window.innerHeight / 2;
@@ -20,7 +37,7 @@ let screenHeight = window.innerHeight / 2;
 let location = 0;
 let locationOpponent = (screenWidth / 10) * 9;
 
-const questionArray = require('./q');
+// const questionArray = require('./q');
 var he = require('he');
 
 // FINALIZED QUESTION
@@ -30,10 +47,10 @@ let answerOptions = [];
 let correct = [];
 function getQuestion() {
   // GET RANDOM NUMBER
-  let randomQuestion = Math.floor(Math.random() * 49);
+  let randomQuestion = Math.floor(Math.random() * 5);
   console.log('random' + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
-  let qa = questionArray.default[randomQuestion];
+  let qa = questionArray[randomQuestion];
   answerOptions = [];
 
   console.log(qa);
@@ -84,6 +101,7 @@ function shuffle(array) {
 
 // REACT BS STARTS HERE
 export default function Single() {
+
   useEffect(() => {
     getQuestion();
   }, []);
@@ -156,35 +174,35 @@ export default function Single() {
       <div className='question-card-section'>
         {showScore ? (
           <div className='row'>
-              <div className='col-sm-12 col-md-4 col-lg-3'>
-                <h2 className='btn btn-block myUser'>
-                  {profileId ? `${profile.name}'s` : ' '}
-                  {profile.name}
-                </h2>
-                <div className=' m-2 p-3 shadow p-3 mb-5 bg-white text-center myCard'>
-                  <div className='question-section'>
-                    <div className='question-count'>
-                      <span>SCORE</span>
-                    </div>
-                    <div className='question-text myQuestions'>
-                      You answered {score} questions correctly!
-                    </div>
+            <div className='col-sm-12 col-md-4 col-lg-3'>
+              <h2 className='btn btn-block myUser'>
+                {profileId ? `${profile.name}'s` : ' '}
+                {profile.name}
+              </h2>
+              <div className=' m-2 p-3 shadow p-3 mb-5 bg-white text-center myCard'>
+                <div className='question-section'>
+                  <div className='question-count'>
+                    <span>SCORE</span>
                   </div>
-                  <div className='answer-sections'>
-                    {/* {q[currentQuestion].answerOptions.map((answerOption) => (
+                  <div className='question-text myQuestions'>
+                    You answered {score} questions correctly!
+                  </div>
+                </div>
+                <div className='answer-sections'>
+                  {/* {q[currentQuestion].answerOptions.map((answerOption) => (
                       <button
                         className=' btn btn-block myBtn'>
                         {he.decode(answerOption.answerText)}
                       </button>
                     ))} */}
-                  </div>
                 </div>
               </div>
-              <div className='col-sm-12 col-md-8 col-lg-9'>
-                <SingleBoard />
-                <Canvas  {...props} />
-              </div>
             </div>
+            <div className='col-sm-12 col-md-8 col-lg-9'>
+              {/* <SingleBoard /> */}
+              <Canvas  {...props} />
+            </div>
+          </div>
         ) : (
           <>
             <div className='row'>
@@ -218,7 +236,7 @@ export default function Single() {
                 </div>
               </div>
               <div className='col-sm-12 col-md-8 col-lg-9'>
-                <SingleBoard />
+                {/* <SingleBoard /> */}
                 <Canvas  {...props} />
               </div>
             </div>

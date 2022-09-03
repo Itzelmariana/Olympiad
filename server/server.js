@@ -41,3 +41,30 @@ const startApolloServer = async (typeDefs, resolvers) => {
   
 // Call the async function to start the server
   startApolloServer(typeDefs, resolvers);
+
+  // =========================
+const http = require('http').Server(app);
+
+const io = require('socket.io')(http, {
+  cors: {
+    origins: ['http://localhost:3000/'],
+  },
+});
+
+io.on('connection', (socket) => {
+  console.log('player connected');
+  const room = socket.handshake.query.room;
+  console.log(room);
+  socket.join(room);
+  io.to(room).emit('playerJoined');
+
+ 
+
+  socket.on('disconnect', () => {
+    console.log('player disconnected');
+  });
+});
+
+http.listen(3002, () => {
+  console.log('server listening on localhost:3002');
+});
