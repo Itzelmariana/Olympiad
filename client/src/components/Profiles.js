@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProfileList = ({ profiles }) => {
+const Profiles = ({ profiles }) => {
   if (!profiles.length) {
     return <h3>No Profiles Yet</h3>;
   }
@@ -9,10 +9,8 @@ const ProfileList = ({ profiles }) => {
     <div>
       {profiles &&
         profiles.map((profile) => (
-          <div className='row'>
-            <div key={profile._id} className='col-6 '>
-              {profile.name}
-            </div>
+          <div key={profile._id} className='row'>
+            <div className='col-6 '>{profile.name}</div>
             <div className='text-center col-6'>{profile.win}</div>
           </div>
         ))}
@@ -20,4 +18,4 @@ const ProfileList = ({ profiles }) => {
   );
 };
 
-export default ProfileList;
+export default Profiles;
