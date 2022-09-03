@@ -59,7 +59,7 @@ const Home = () => {
                 <div className='welcome'>
                   <Link to='/me' className='myLink'>
                     <button className='btn btn-lg btn-primary m-2 mb-4 largeButtonYellow'>
-                      Welcome {Auth.getProfile().data.name}
+                      Welcome, {Auth.getProfile().data.name}
                     </button>
                   </Link>
                 </div>
@@ -80,7 +80,7 @@ const Home = () => {
               </div>
               <div className=' text-right'>
                 <button className='btn btn-lg m-2' onClick={logout}>
-                <img src={logoutIcon} alt='logout' width={'60px'} />
+                  <img src={logoutIcon} alt='logout' width={'60px'} />
                 </button>
               </div>
             </>

@@ -23,3 +23,23 @@ export const LOGIN_USER = gql`
     }
   }
 `;
+
+export const ADD_WIN = gql`
+  mutation addWin($win: Int!) {
+    addWin(win: $win) {
+      _id
+      name
+      win
+    }
+  }
+`;
+
+export const ADD_LOSE = gql`
+  mutation addWin($lose: Int!) {
+    addLose(lose: $lose) {
+      _id
+      name
+      lose
+    }
+  }
+`;

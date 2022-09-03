@@ -7,18 +7,15 @@ const ProfileList = ({ profiles }) => {
 
   return (
     <div>
-      <div className='flex-row justify-space-between my-4'>
-        {profiles &&
-          profiles.map((profile) => (
-            <div key={profile._id} className='col-12 col-xl-6'>
-              <div>
-                <h4 className='text-center'>
-                  {profile.name} <br />
-                </h4>
-              </div>
+      {profiles &&
+        profiles.map((profile) => (
+          <div className='row'>
+            <div key={profile._id} className='col-6 '>
+              {profile.name}
             </div>
-          ))}
-      </div>
+            <div className='text-center col-6'>{profile.win}</div>
+          </div>
+        ))}
     </div>
   );
 };
