@@ -123,7 +123,8 @@ const Multi = () => {
 
   useEffect(() => {
     socket.on('getMessage', (message) => setChatText([...chatText, message]));
-  },[chatText]);
+    console.log(chatText);
+  }, [chatText]);
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
   const [callAddWinApi] = useMutation(ADD_WIN);
@@ -187,7 +188,7 @@ const Multi = () => {
   // CHAT MESSANGE HANDLERS
   const handleMessageClick = () => {
 
-    socket.emit("sendMessage", message);
+    socket.emit("sendMessage", `<li>${message}</li>`);
     console.log(message);
   }
   const handleChange = event => {
@@ -223,7 +224,7 @@ const Multi = () => {
               handleMessageClick()
             }>SEND</button>
           <div id='messageText'>
-            {chatText}
+            <ul>{chatText}</ul>
           </div>
         </div>
       </div>
