@@ -56,10 +56,13 @@ io.on('connection', (socket) => {
   const room = socket.handshake.query.room;
   console.log(room);
   socket.join(room);
-  io.to(room).emit('playerJoined');
+  // io.to(room).emit('playerJoined');
 
  
-
+socket.on('sendMessage', (message)=>{
+  console.log("message sent");
+  socket.to(room).emit("getMessage", message);
+})
   socket.on('disconnect', () => {
     console.log('player disconnected');
   });

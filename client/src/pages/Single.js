@@ -11,14 +11,7 @@ import SingleBoard from '../components/SingleBoard';
 import Auth from '../utils/auth';
 import './Single.css';
 
-
-
-
-
 import axios from "axios";
-
-
-
 
 const url = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple";
 const questionArray = [];
@@ -27,7 +20,7 @@ axios.get(url)
     for (let i = 0; i < response.data.results.length; i++) {
       questionArray.push(response.data.results[i])
     }
-  }).then(()=>{
+  }).then(() => {
     console.log(questionArray)
   });
 
@@ -101,8 +94,25 @@ function shuffle(array) {
   return array;
 }
 
+
+
 // REACT BS STARTS HERE
 export default function Single() {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
+  const [ignoranceScore, setIgnoranceScore] = useState(0);
+  // GAME END STATE
+  console.log("!!!!!!!!!!!! " + score);
+  if (score === 10) {
+    console.log("GAME END")
+    addWin();
+  } else if(ignoranceScore === 10 ) {
+    console.log("GAME END")
+    addLose();
+  }
+  // ================
+
   const [callAddWinApi, { error }] = useMutation(ADD_WIN);
 
   const addWin = async () => {
@@ -130,11 +140,8 @@ export default function Single() {
     getQuestion();
   }, []);
 
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showScore, setShowScore] = useState(false);
-  const [score, setScore] = useState(0);
-  const [ignoranceScore, setIgnoranceScore] = useState(0);
-  console.log('SCORE: ' + score);
+
+
   // AUTHORIZATION
   const { profileId } = useParams();
   const { loading, data } = useQuery(
@@ -168,25 +175,19 @@ export default function Single() {
 
   const handleAnswerOptionClick = (isCorrect) => {
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(score+1);
       location = location + screenWidth / 10;
     } else {
       setIgnoranceScore(ignoranceScore + 1);
-      console.log('wrong');
       locationOpponent = locationOpponent - screenWidth / 10;
     }
+
     const nextQuestion = currentQuestion;
     if (nextQuestion < 50 && score < 9 && ignoranceScore < 9) {
       getQuestion();
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowScore(true);
-
-      if (score === 10) {
-        addWin();
-      } else {
-        addLose();
-      }
     }
   };
 
@@ -222,7 +223,7 @@ export default function Single() {
                       </div>
                     ) : (
                       <div>
-                        You answered {score} questions correctly!You WON the
+                        You answered {score} questions correctly! You WON the
                         game{' '}
                       </div>
                     )}
@@ -276,7 +277,7 @@ export default function Single() {
                 </div>
               </div>
               <div className='col-sm-12 col-md-8 col-lg-9 sBoard'>
-                <SingleBoard />
+                {/* <SingleBoard /> */}
                 <Canvas {...props} />
               </div>
             </div>
