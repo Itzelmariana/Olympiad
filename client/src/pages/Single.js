@@ -153,7 +153,7 @@ export default function Single() {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='loading'>Loading...</div>;
   }
 
   if (!profile?.name) {

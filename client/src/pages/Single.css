@@ -1,19 +1,24 @@
 .Single .myCard {
-  border: 1px solid rgb(205, 205, 205);
+  border: 2px solid rgb(205, 205, 205);
   border-radius: 15px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
 }
 
 .Single .myUser {
   text-align: center;
   margin: auto;
-  margin-top: 110px;
+  margin-top: 100px;
   margin-bottom: 15px;
   padding-top: 12px;
   padding-bottom: 12px;
 }
 .Single .myQuestions {
   color: #085aa4;
-  font-weight: 500;
+  font-weight: 400;
+}
+.Single .myBtn {
+  font-weight: 300;
 }
 .Single .myBtn:hover {
   background: #085aa4;
@@ -21,7 +26,7 @@
   border-radius: 10px;
 }
 .Single {
-  background-image: url('../images/bgGame.jpeg');
+  background-image: url('../images/bgGame3.jpeg');
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -30,15 +35,26 @@
 .myMessage {
   margin-top: 160px;
 }
-.myMeLink {
-  color: white;
-  background: #085aa4;
-  padding: 20px;
+
+.loading {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.myUser {
+  background: var(--beige);
+  width: fit-content;
   border-radius: 20px;
+  background-size: contain;
+  border: 3px solid var(--beige2);
+}
+
+.myMeLink {
+  color: var(--blue4);
+  font-family: 'Mali', cursive;
 }
 
 .myMeLink:hover {
-  color: var(--blue4);
-  background: white;
   text-decoration: none;
+  color: white;
 }
