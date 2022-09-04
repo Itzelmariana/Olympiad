@@ -6,16 +6,7 @@ import React, { useState, useEffect } from 'react';
 let screenWidth = window.innerWidth / 2;
 let screenHeight = window.innerHeight / 2;
 
-setInterval(() => {
-  const sizeBoard = document.querySelector('canvas');
-  // console.log(sizeBoard);
-  window.addEventListener('resize', function () {
-    screenWidth = window.innerWidth / 2;
-    screenHeight = window.innerHeight / 2;
-    //sizeBoard.width = screenWidth;
-    // sizeBoard.height = screenHeight;
-  });
-}, 500);
+
 
 // let newX = 0;
 let newY = 0;
@@ -31,10 +22,10 @@ const Canvas = (props) => {
     setNewX(props.location.location, newX);
     setNewOpponentX(props.locationOpponent.locationOpponent, newOpponentX);
     const pawn = new Image();
-    pawn.src = '/pawn.png';
+    pawn.src = '/pawn1.png'
 
     const pawn2 = new Image();
-    pawn2.src = '/pawn.png';
+    pawn2.src = '/pawn2.png'
 
     class Token {
       constructor() {
@@ -68,13 +59,8 @@ const Canvas = (props) => {
         this.y = (screenHeight / 10) * 8;
       }
       exist() {
-        ctx.drawImage(
-          pawn2,
-          newOpponentX,
-          this.y,
-          window.innerWidth / 10 / 2,
-          window.innerHeight / 5 / 2
-        );
+        ctx.drawImage(pawn2, newOpponentX, this.y, (window.innerWidth / 10) / 2, (window.innerHeight / 5) / 2);
+        // ctx.drawImage(pawn2, newX, newY, 600, 600, newX, newY, pawn.width*ratio, pawn.height*ratio);
       }
       update() {
         if (this.x) {
@@ -86,10 +72,18 @@ const Canvas = (props) => {
         }
       }
     }
+    const sizeBoard = document.querySelector('canvas');
+
+    window.addEventListener('resize', function () {
+      screenWidth = window.innerWidth / 2;
+      screenHeight = window.innerHeight / 2;
+      console.log("WINDOW RESIZED");
+      sizeBoard.width = screenWidth;
+      sizeBoard.height = screenHeight;
+    });
 
     function draw() {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      // console.log('draw');
 
       // Create gradient
       var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
@@ -110,8 +104,16 @@ const Canvas = (props) => {
         ctx.lineTo((screenWidth / 10) * i, screenHeight);
         ctx.stroke();
       }
-      player.update();
+      for (let i = 0; i <= 4; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, screenHeight / 4 * i);
+        ctx.lineTo(screenWidth, screenHeight / 4 * i);
+        ctx.stroke();
+      }
+
       opponent.update();
+      player.update();
+
       // socket.emit("move", { player })
       requestAnimationFrame(draw);
     }
@@ -119,7 +121,7 @@ const Canvas = (props) => {
     const opponent = new Opponent();
 
     // CONTROLS FRAMERATE AND ANIMATE - NO TOUCHY!
-    let fps, fpsInterval, startTime, now, then, elapsed;
+    let fpsInterval, startTime, now, then, elapsed;
 
     function startAnimating(fps) {
       fpsInterval = 1000 / fps;
@@ -135,12 +137,7 @@ const Canvas = (props) => {
       then = now - (elapsed % fpsInterval);
       draw();
     }
-  }, [
-    props.location.location,
-    newX,
-    props.locationOpponent.locationOpponent,
-    newOpponentX,
-  ]);
+  }, [props.location.location, newX, props.locationOpponent.locationOpponent, newOpponentX])
   // ============================================
 
   // CREATES THE CANVAS

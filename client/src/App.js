@@ -15,6 +15,8 @@ import Multi from './pages/Multi';
 
 import Navbar from './components/Navbar';
 
+
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
