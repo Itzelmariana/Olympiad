@@ -2,15 +2,15 @@
   --beige: #e8dab2;
   --beige2: #aea57b;
 
-  --yellow1: #FCF140;
-  --yellow2: #FEEA3B;
-  --yellow3: #FDCA34;
-  --orange: #E19837;
+  --yellow1: #fcf140;
+  --yellow2: #feea3b;
+  --yellow3: #fdca34;
+  --orange: #e19837;
 
-  --green1: #D6F416;
-  --green2: #B0E71A;
-  --green3: #7AD814;
-  --green4: #496D12;
+  --green1: #d6f416;
+  --green2: #b0e71a;
+  --green3: #7ad814;
+  --green4: #496d12;
 
   --blue1: #1df9f7;
   --blue2: #16d9e6;
@@ -56,10 +56,12 @@ body {
 .largeButtonYellow {
   color: var(--orange);
   font-size: 2em;
-  background-image: linear-gradient(to bottom,
-      var(--yellow1),
-      var(--yellow2),
-      var(--yellow3));
+  background-image: linear-gradient(
+    to bottom,
+    var(--yellow1),
+    var(--yellow2),
+    var(--yellow3)
+  );
   border-style: solid;
   border-color: var(--yellow3);
   border-width: 2px;
@@ -73,10 +75,12 @@ body {
 .largeButtonGreen {
   color: var(--green4);
   font-size: 2em;
-  background-image: linear-gradient(to bottom,
-      var(--green1),
-      var(--green2),
-      var(--green3));
+  background-image: linear-gradient(
+    to bottom,
+    var(--green1),
+    var(--green2),
+    var(--green3)
+  );
   border-style: solid;
   border-color: var(--green3);
   border-width: 2px;
@@ -90,10 +94,12 @@ body {
 .largeButtonBlue {
   color: var(--blue4);
   font-size: 2em;
-  background-image: linear-gradient(to bottom,
-      var(--blue1),
-      var(--blue2),
-      var(--blue3));
+  background-image: linear-gradient(
+    to bottom,
+    var(--blue1),
+    var(--blue2),
+    var(--blue3)
+  );
   border-style: solid;
   border-color: var(--blue3);
   border-width: 2px;
@@ -109,6 +115,7 @@ body {
   background-size: cover;
   height: 100vh;
   width: 100vw;
+  font-family: 'Raleway', sans-serif;
 }
 
 /* .welcome {

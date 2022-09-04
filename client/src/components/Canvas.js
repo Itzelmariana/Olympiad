@@ -13,7 +13,7 @@ setInterval(() => {
     screenWidth = window.innerWidth / 2;
     screenHeight = window.innerHeight / 2;
     //sizeBoard.width = screenWidth;
-    sizeBoard.height = screenHeight;
+    // sizeBoard.height = screenHeight;
   });
 }, 500);
 
