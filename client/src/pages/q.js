@@ -1,4 +1,4 @@
-const questionArray = [
+const qArray = [
   {
     "category": "General Knowledge",
     "type": "multiple",
@@ -457,4 +457,4 @@ const questionArray = [
   }
 ]
 
-export default questionArray;
+export default qArray;

@@ -6,16 +6,7 @@ import React, { useState, useEffect } from 'react';
 let screenWidth = window.innerWidth / 2;
 let screenHeight = window.innerHeight / 2;
 
-setInterval(() => {
-  const sizeBoard = document.querySelector('canvas');
-  // console.log(sizeBoard);
-  window.addEventListener('resize', function () {
-    screenWidth = window.innerWidth / 2;
-    screenHeight = window.innerHeight / 2;
-    //sizeBoard.width = screenWidth;
-    sizeBoard.height = screenHeight;
-  });
-}, 500);
+
 
 // let newX = 0;
 let newY = 0;
@@ -81,10 +72,18 @@ const Canvas = (props) => {
         }
       }
     }
+    const sizeBoard = document.querySelector('canvas');
+
+    window.addEventListener('resize', function () {
+      screenWidth = window.innerWidth / 2;
+      screenHeight = window.innerHeight / 2;
+      console.log("WINDOW RESIZED");
+      sizeBoard.width = screenWidth;
+      sizeBoard.height = screenHeight;
+    });
 
     function draw() {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      // console.log('draw');
 
       // Create gradient
       var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
