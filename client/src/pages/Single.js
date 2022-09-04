@@ -11,12 +11,12 @@ import SingleBoard from '../components/SingleBoard';
 import Auth from '../utils/auth';
 
 import './Single.css';
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 
 //const socket = io.connect('http://localhost:3002');
 
 let screenWidth = window.innerWidth / 2;
-let screenHeight = window.innerHeight / 2;
+//let screenHeight = window.innerHeight / 2;
 // socket.on("spMove", (data) => {
 //   console.log("SINGLE PAGE IDK WHY");
 // });
@@ -87,7 +87,7 @@ function shuffle(array) {
 
 // REACT BS STARTS HERE
 export default function Single() {
-  const [callAddWinApi, { error }] = useMutation(ADD_WIN);
+  const [callAddWinApi] = useMutation(ADD_WIN);
 
   const addWin = async () => {
     try {
@@ -99,15 +99,15 @@ export default function Single() {
     }
   };
 
-  const [callAddLoseApi, { errorLoss }] = useMutation(ADD_LOSE);
+  const [callAddLoseApi] = useMutation(ADD_LOSE);
 
   const addLose = async () => {
     try {
       await callAddLoseApi({
         variables: { lose: 1 },
       });
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
     }
   };
   useEffect(() => {
@@ -166,7 +166,7 @@ export default function Single() {
     } else {
       setShowScore(true);
 
-      if (score === 10) {
+      if (score === 9) {
         addWin();
       } else {
         addLose();
@@ -232,8 +232,10 @@ export default function Single() {
             <div className='row'>
               <div className='col-sm-12 col-md-4 col-lg-3 text-center'>
                 <h2 className='btn btn-block myUser'>
-                  {profileId ? `${profile.name}'s` : ' '}
-                  {profile.name}
+                  <Link to='/me' className='myMeLink'>
+                    {profileId ? `${profile.name}'s` : ' '}
+                    {profile.name}
+                  </Link>
                 </h2>
                 <div className=' ml-4 mr-4 p-3 shadow mb-1 bg-white text-center myCard'>
                   <div className='question-section'>
