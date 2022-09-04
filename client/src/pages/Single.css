@@ -4,10 +4,6 @@
 }
 
 .Single .myUser {
-  background: #085aa4;
-  border-radius: 60%;
-  color: white;
-  width: fit-content;
   text-align: center;
   margin: auto;
   margin-top: 110px;
@@ -34,7 +30,15 @@
 .myMessage {
   margin-top: 160px;
 }
- 
-canvas {
-margin-top: 20%;
- }
+.myMeLink {
+  color: white;
+  background: #085aa4;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.myMeLink:hover {
+  color: var(--blue4);
+  background: white;
+  text-decoration: none;
+}

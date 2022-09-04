@@ -12,7 +12,7 @@ setInterval(() => {
   window.addEventListener('resize', function () {
     screenWidth = window.innerWidth / 2;
     screenHeight = window.innerHeight / 2;
-    sizeBoard.width = screenWidth;
+    //sizeBoard.width = screenWidth;
     sizeBoard.height = screenHeight;
   });
 }, 500);
