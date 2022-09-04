@@ -166,7 +166,7 @@ export default function Single() {
     } else {
       setShowScore(true);
 
-      if (score === 10) {
+      if (score === 9) {
         addWin();
       } else {
         addLose();
@@ -232,8 +232,10 @@ export default function Single() {
             <div className='row'>
               <div className='col-sm-12 col-md-4 col-lg-3 text-center'>
                 <h2 className='btn btn-block myUser'>
-                  {profileId ? `${profile.name}'s` : ' '}
-                  {profile.name}
+                  <Link to='/me' className='myMeLink'>
+                    {profileId ? `${profile.name}'s` : ' '}
+                    {profile.name}
+                  </Link>
                 </h2>
                 <div className=' ml-4 mr-4 p-3 shadow mb-1 bg-white text-center myCard'>
                   <div className='question-section'>
