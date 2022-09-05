@@ -21,7 +21,7 @@
   font-weight: 300;
 }
 .Single .myBtn:hover {
-  background: #085aa4;
+  background: var(--beige2);
   color: white;
   border-radius: 10px;
 }
@@ -57,4 +57,19 @@
 .myMeLink:hover {
   text-decoration: none;
   color: white;
+}
+.canvasBorder {
+  width: fit-content;
+  border: 1px solid black;
+  height: fit-content;
+  border-radius: 10px;
+  -webkit-box-shadow: 6px 7px 21px 7px rgba(0, 0, 0, 0.94);
+  box-shadow: 6px 7px 21px 7px rgba(0, 0, 0, 0.94);
+}
+
+@media (max-width: 768px) {
+  .canvasBorder {
+    margin: auto;
+    text-align: center;
+  }
 }

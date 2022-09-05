@@ -7,7 +7,6 @@ import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
 
-
 import Auth from '../utils/auth';
 import './Multi.css';
 
@@ -87,10 +86,9 @@ function shuffle(array) {
 }
 // ============================================================================
 
-
 let myPlayer;
 
-// SOCKET IO 
+// SOCKET IO
 // IF NO ROOM, GENERATE A ROOM NAME AND CONNECT - OTHERWISE USE PROVIDED ROOM IN URL
 const room = getQueryParameter('room') || getRandomString(5);
 // CONNECT TO ROOM WITHIN URL
@@ -99,7 +97,7 @@ let socket = io(`localhost:3002/?room=${room}`);
 window.history.replaceState(
   {},
   document.title,
-  updateQueryParameter('room', room),
+  updateQueryParameter('room', room)
 );
 // ANNOUNCE NEW PLAYERS WHEN THEY JOIN
 socket.on('playerJoined', (i) => {
@@ -111,16 +109,16 @@ socket.on('whatPlayerAmI', (numClients) => {
   myPlayer = numClients;
   console.log(`I AM PLAYER NUMBER: ${myPlayer}`);
   if (myPlayer == 1) {
-    console.log("IMA GET YOU SOME QUESTIONS BROOOOOOOOO");
+    console.log('IMA GET YOU SOME QUESTIONS BROOOOOOOOO');
   }
 });
 
 const Multi = () => {
-  // STATES 
+  // STATES
   // ==================================================
   const [message, setMessage] = useState('');
   const [playerTurn, setPlayerTurn] = useState(1);
-  const [chatText, setChatText] = useState([])
+  const [chatText, setChatText] = useState([]);
 
   useEffect(() => {
     socket.on('getMessage', (message) => setChatText([...chatText, message]));
@@ -166,7 +164,7 @@ const Multi = () => {
   const profile = data?.me || data?.profile || {};
 
   if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Navigate to='/singleplayer' />;
+    return <Navigate to='/multiplayer' />;
   }
 
   if (loading) {
@@ -185,14 +183,13 @@ const Multi = () => {
   }
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
   // CHAT MESSANGE HANDLERS
   const handleMessageClick = () => {
 
     socket.emit("sendMessage", `${message}`);
     console.log(message);
-  }
-  const handleChange = event => {
+  };
+  const handleChange = (event) => {
     setMessage(event.target.value);
 
     console.log('value is:', event.target.value);
@@ -211,15 +208,13 @@ const Multi = () => {
             {profile.name}
           </h2>
         </div>
-        <div className='col-sm-12 col-md-6 col-lg-8 myMultiBoard'>
-
-        </div>
+        <div className='col-sm-12 col-md-6 col-lg-8 myMultiBoard'></div>
         <div className='col-sm-12 col-md-3 col-lg-2 myMultiOther'>
           CHAT
           <input
-            type="text"
-            id="message"
-            name="message"
+            type='text'
+            id='message'
+            name='message'
             onChange={handleChange}
             value={message}
           />
