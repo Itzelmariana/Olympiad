@@ -3,7 +3,7 @@ import Canvas from '../components/Canvas';
 import { Link } from 'react-router-dom';
 import { Navigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
-
+// import Chatbox from '../components/Chatbox';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
 
@@ -20,6 +20,7 @@ import {
 } from '../utils';
 // ===============================
 import qArray from './q';
+import Chatbox from '../components/Chatbox';
 console.log(qArray);
 
 // ============================================================================
@@ -188,7 +189,7 @@ const Multi = () => {
   // CHAT MESSANGE HANDLERS
   const handleMessageClick = () => {
 
-    socket.emit("sendMessage", `<li>${message}</li>`);
+    socket.emit("sendMessage", `${message}`);
     console.log(message);
   }
   const handleChange = event => {
@@ -198,6 +199,9 @@ const Multi = () => {
   };
   // ========================================================
 
+  let props = {
+    chatText: { chatText },
+  };
   return (
     <div className='Multi'>
       <div className='row text-center'>
@@ -223,9 +227,7 @@ const Multi = () => {
             onClick={() =>
               handleMessageClick()
             }>SEND</button>
-          <div id='messageText'>
-            <ul>{chatText}</ul>
-          </div>
+          <Chatbox {...props} />
         </div>
       </div>
     </div>

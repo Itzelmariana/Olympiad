@@ -96,7 +96,7 @@ function shuffle(array) {
 // ============================================================================
 
 
-// REACT BS STARTS HERE
+// REACT STARTS HERE
 export default function Single() {
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
   const [callAddWinApi] = useMutation(ADD_WIN);
