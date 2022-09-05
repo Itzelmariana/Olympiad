@@ -1,14 +1,32 @@
 .SingleBoard {
   color: white;
-  margin-top: 150px;
+  margin-top: 100px;
   text-align: left;
+  margin-bottom: 15px;
+}
+.myBtnPlayagain {
+  border: 1px solid var(--beige);
+  background: var(--beige);
+  font-size: 28px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 0 5px 0 5px;
+  display: block;
+  width: fit-content;
+  height: fit-content;
+  border: 3px solid var(--beige2);
+}
+
+.myBtnPlayagain:hover {
+  text-decoration: none;
+  opacity: 0.8;
 }
 @media (max-width: 768px) {
   .SingleBoard {
-    color: white;
     margin-top: 0;
+    margin-bottom: 2px;
   }
-  .sBoard {
-    text-align: center;
+  .myBtnPlayagain {
+    margin: auto;
   }
 }
