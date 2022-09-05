@@ -6,30 +6,30 @@ import { useMutation, useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
-
-
+import SingleBoard from '../components/SingleBoard';
 import Auth from '../utils/auth';
 import './Single.css';
 
-import axios from "axios";
+import axios from 'axios';
 
-const url = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple";
+const url =
+  'https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple';
 const questionArray = [];
-axios.get(url)
+axios
+  .get(url)
   .then((response) => {
     for (let i = 0; i < response.data.results.length; i++) {
-      questionArray.push(response.data.results[i])
+      questionArray.push(response.data.results[i]);
     }
-  }).then(() => {
-    console.log(questionArray)
+  })
+  .then(() => {
+    console.log(questionArray);
   });
 
 let screenWidth = window.innerWidth / 2;
 // let screenHeight = window.innerHeight / 2;
 let location = 0;
 let locationOpponent = (screenWidth / 10) * 9;
-
-
 
 // ============================================================================
 // const questionArray = require('./q');
@@ -95,7 +95,6 @@ function shuffle(array) {
 }
 // ============================================================================
 
-
 // REACT BS STARTS HERE
 export default function Single() {
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -128,13 +127,10 @@ export default function Single() {
     getQuestion();
   }, []);
 
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [ignoranceScore, setIgnoranceScore] = useState(0);
-
-
 
   // AUTHORIZATION
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -184,7 +180,7 @@ export default function Single() {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowScore(true);
-      if (score === 10) {
+      if (score === 9) {
         addWin();
       } else {
         addLose();
@@ -211,6 +207,7 @@ export default function Single() {
                 {profileId ? `${profile.name}'s` : ' '}
                 {profile.name}
               </h2>
+
               <div className=' m-2 p-3 shadow p-3 mb-5 bg-white text-center myCard'>
                 <div className='question-section'>
                   <div className='question-count'>
@@ -241,8 +238,10 @@ export default function Single() {
               </div>
             </div>
             <div className='col-sm-12 col-md-8 col-lg-9'>
-              {/* <SingleBoard /> */}
-              <Canvas  {...props} />
+              <SingleBoard />
+              <div className='canvasBorder '>
+                <Canvas {...props} />
+              </div>
             </div>
           </div>
         ) : (
@@ -279,9 +278,11 @@ export default function Single() {
                   </div>
                 </div>
               </div>
-              <div className='col-sm-12 col-md-8 col-lg-9 sBoard'>
-                {/* <SingleBoard /> */}
-                <Canvas {...props} />
+              <div className='col-sm-12 col-md-8 col-lg-9'>
+                <SingleBoard />
+                <div className='canvasBorder'>
+                  <Canvas {...props} />
+                </div>
               </div>
             </div>
           </>
