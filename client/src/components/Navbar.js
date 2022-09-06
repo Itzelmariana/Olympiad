@@ -38,12 +38,15 @@ const Navbar = () => {
             Sign up or login to flex your trivia knowledge! Once you have created 
             your account, you can begin by selecting the single player option. 
             You can also invite friends by selecting the multiplayer option. This game 
-            was insprired by the poplular trivia board game, Marathon, played in Mexico! The objective
-            is to win against your own ignorance. To play, answer the multiple choice questions correctly to 
+            was insprired by the poplular trivia board game, Marathon, played in Mexico!
+            <br></br>
+            <br></br>
+            The objective is to win against your own ignorance. To play, answer the multiple choice questions correctly to 
             advance your token forward towards the finish line. If you answer a question
             incorrectly, the oppsoing token, representing your ignorance, will move towards their 
-            finish line. Which ever token reaches the finish line first, wins! Will you 
-            be brave enough and challenge your own ignorance?   </Modal.Body>
+            finish line. Whichever token reaches the finish line first, wins! Will you 
+            be brave enough and challenge your own ignorance?
+            </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>
               Close
