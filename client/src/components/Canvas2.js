@@ -13,14 +13,14 @@ let newY = 0;
 
 
 const Canvas = (props) => {
-  console.log(props.location.location);
-  console.log(props.locationOpponent.locationOpponent);
+  // console.log(props.locationP1X.locationP1X);
+  // console.log(props.locationOpponent.locationOpponent);
   const canvas = React.useRef();
   const [newX, setNewX] = useState(0);
   const [newOpponentX, setNewOpponentX] = useState(0);
   useEffect(() => {
     const ctx = canvas.current.getContext('2d');
-    setNewX(props.location.location, newX);
+    setNewX(props.locationP1X.locationP1X, newX);
     setNewOpponentX(props.locationOpponent.locationOpponent, newOpponentX);
     const pawn = new Image();
     pawn.src = '/pawn1.png'
@@ -78,7 +78,7 @@ const Canvas = (props) => {
     window.addEventListener('resize', function () {
       screenWidth = window.innerWidth / 2;
       screenHeight = window.innerHeight / 2;
-      console.log("WINDOW RESIZED");
+      // console.log("WINDOW RESIZED");
       sizeBoard.width = screenWidth;
       sizeBoard.height = screenHeight;
     });
@@ -138,7 +138,7 @@ const Canvas = (props) => {
       then = now - (elapsed % fpsInterval);
       draw();
     }
-  }, [props.location.location, newX, props.locationOpponent.locationOpponent, newOpponentX])
+  }, [props.locationP1X.locationP1X, newX, props.locationOpponent.locationOpponent, newOpponentX])
   // ============================================
 
   // CREATES THE CANVAS

@@ -89,7 +89,21 @@ io.on('connection', (socket) => {
   socket.on('sendMessage', (message) => {
     console.log("message sent");
     io.in(room).emit("getMessage", message);
-  })
+  });
+
+  socket.on('changePlayerTurn', (playerTurn) => {
+    // console.log(playerTurn);
+    io.in(room).emit("newPlayerTurn", playerTurn);
+
+  });
+
+  socket.on('player1Move', (locationP1X) => {
+    console.log(locationP1X);
+    io.in(room).emit("player1Position", locationP1X);
+  });
+
+
+
   socket.on('disconnect', () => {
     console.log('player disconnected');
     if (playerArray.includes(myId)) {
@@ -104,6 +118,7 @@ io.on('connection', (socket) => {
 
   });
 });
+
 
 http.listen(3002, () => {
   console.log('server listening on localhost:3002');
