@@ -12,8 +12,6 @@ import './Single.css';
 
 import axios from 'axios';
 
-//import Audio from '../components/Audio';
-
 const url =
   'https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple';
 const questionArray = [];
