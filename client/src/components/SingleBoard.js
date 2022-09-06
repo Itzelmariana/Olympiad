@@ -11,7 +11,7 @@ const SingleBoard = () => {
         onClick={() => window.location.reload()}
         className='myBtnPlayagain'
       >
-        🔄
+        Play again
       </Link>
     </div>
   );

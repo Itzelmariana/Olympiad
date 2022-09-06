@@ -7,10 +7,13 @@
 .myBtnPlayagain {
   border: 1px solid var(--beige);
   background: var(--beige);
-  font-size: 28px;
+  font-size: 18px;
+  font-family: 'Mali', cursive;
+  color: var(--blue4);
+  font-weight: 200;
   border-radius: 10px;
   text-align: center;
-  padding: 0 5px 0 5px;
+  padding: 8px 10px 8px 10px;
   display: block;
   width: fit-content;
   height: fit-content;
