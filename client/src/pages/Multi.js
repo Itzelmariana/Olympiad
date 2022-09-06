@@ -342,11 +342,6 @@ const Multi = () => {
           <Canvas2 {...props} />
         </div>
         <div className='col-sm-12 col-md-3 col-lg-2 myMultiOther'>
-          {/* <div className="form-group" id="slider">
-            <h5>Volume</h5>
-            <input type="range" className="form-control-range" id="formControlRange" defaultValue="0.30" min="0" max="1"
-              step="0.01"></input>
-          </div> */}
           CHAT
           <input
             type='text'

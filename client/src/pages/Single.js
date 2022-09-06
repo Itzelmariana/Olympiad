@@ -207,11 +207,6 @@ export default function Single() {
 
   return (
     <div className='Single'>
-      {/* <div className="form-group" id="slider">
-        <h5>Volume</h5>
-        <input type="range" className="form-control-range" id="formControlRange" defaultValue="0.30" min="0" max="1"
-          step="0.01"></input>
-      </div> */}
       <div className='question-card-section'>
         {showScore ? (
           <div className='row'>

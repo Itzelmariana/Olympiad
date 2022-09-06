@@ -15,22 +15,6 @@ import './Home.css';
 import useSound from 'use-sound';
 
 
-
-// var audioLanding = new Audio('/chill.mp3');
-
-
-
-// setInterval(function () {
-//   let landingPageVolume = document.getElementById('formControlRange');
-//   if (landingPageVolume.value > 0) {
-//     audioLanding.volume = landingPageVolume.value;
-//     console.log(landingPageVolume.value);
-//     audioLanding.play();
-//   } else {
-//     audioLanding.pause();
-//   }
-// }, 1000);
-
 const Home = () => {
   const [state, setState] = useState({
     signupOpen: false,
@@ -54,23 +38,17 @@ const Home = () => {
     Auth.logout();
   };
 
-  const chillUrl = '/chill.mp3';
+  const chillUrl = '/robo.mp3';
 
   const [isHovering, setIsHovering] = React.useState(
     false
   );
-
+  let playing = true;
   const BoopButton = () => {
-    const [play, { stop }] = useSound(chillUrl, {
-      onend: () => {
-        console.log("SONG END")
-      },
-    });
 
-    return <button
-      // active={isPlaying}
-      onClick={play} play={play}
-      stop={stop}>Play Music</button>;
+    const [play, { stop }] = useSound(chillUrl);
+
+    return <button onClick={play}>▶</button>;
   };
 
 
@@ -164,11 +142,6 @@ const Home = () => {
           )}
         </div>
       </div>
-      {/* <div className="form-group" id="slider">
-              <h5>Volume</h5>
-              <input type="range" className="form-control-range" id="formControlRange" defaultValue="0.30" min="0" max="1"
-                step="0.01"></input>
-            </div> */}
       <BoopButton />
     </header>
   );
