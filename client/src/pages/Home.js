@@ -12,21 +12,24 @@ import Signup from '../components/Signup';
 import logoutIcon from '../images/logout.png';
 
 import './Home.css';
-
-var audioLanding = new Audio('/chill.mp3');
-
+import useSound from 'use-sound';
 
 
-setInterval(function () {
-  let landingPageVolume = document.getElementById('formControlRange');
-  if (landingPageVolume.value > 0) {
-    audioLanding.volume = landingPageVolume.value;
-    console.log(landingPageVolume.value);
-    audioLanding.play();
-  } else {
-    audioLanding.pause();
-  }
-}, 1000);
+
+// var audioLanding = new Audio('/chill.mp3');
+
+
+
+// setInterval(function () {
+//   let landingPageVolume = document.getElementById('formControlRange');
+//   if (landingPageVolume.value > 0) {
+//     audioLanding.volume = landingPageVolume.value;
+//     console.log(landingPageVolume.value);
+//     audioLanding.play();
+//   } else {
+//     audioLanding.pause();
+//   }
+// }, 1000);
 
 const Home = () => {
   const [state, setState] = useState({
@@ -51,9 +54,30 @@ const Home = () => {
     Auth.logout();
   };
 
+  const chillUrl = '/chill.mp3';
+
+  const [isHovering, setIsHovering] = React.useState(
+    false
+  );
+
+  const BoopButton = () => {
+    const [play, { stop }] = useSound(chillUrl, {
+      onend: () => {
+        console.log("SONG END")
+      },
+    });
+
+    return <button
+      // active={isPlaying}
+      onClick={play} play={play}
+      stop={stop}>Play Music</button>;
+  };
+
+
   return (
-    
+
     <header className='Home container'>
+
       <div>
         <Link to='/'>
           <h1 className='align-center text-center'>
@@ -140,11 +164,12 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className="form-group" id="slider">
+      {/* <div className="form-group" id="slider">
               <h5>Volume</h5>
               <input type="range" className="form-control-range" id="formControlRange" defaultValue="0.30" min="0" max="1"
                 step="0.01"></input>
-            </div>
+            </div> */}
+      <BoopButton />
     </header>
   );
 };
