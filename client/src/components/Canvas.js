@@ -86,17 +86,30 @@ const Canvas = (props) => {
     function draw() {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-      // Create gradient
-      var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
-      grd.addColorStop(0, 'red');
-      grd.addColorStop(0.25, 'yellow');
-      grd.addColorStop(0.5, 'green');
-      grd.addColorStop(0.75, 'blue');
-      grd.addColorStop(1, 'violet');
+ // Create gradient
+ var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
+ grd.addColorStop(0, 'black');
+ grd.addColorStop(0.25, 'grey');
+ grd.addColorStop(0.5, 'grey');
+ grd.addColorStop(0.75, 'grey');
+ grd.addColorStop(1, 'white');
 
-      // Fill with gradient
-      ctx.fillStyle = grd;
-      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+ // Fill with gradient
+ ctx.fillStyle = grd;
+ ctx.fillRect(0, ctx.canvas.height / 2, ctx.canvas.width, ctx.canvas.height / 2);
+
+
+ // Create gradient
+ var grd2 = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
+ grd2.addColorStop(0, 'red');
+ grd2.addColorStop(0.25, 'yellow');
+ grd2.addColorStop(0.5, 'green');
+ grd2.addColorStop(0.75, 'blue');
+ grd2.addColorStop(1, 'violet');
+
+ // Fill with gradient
+ ctx.fillStyle = grd2;
+ ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height / 2);
 
       // Create vertical grid lines
       for (let i = 0; i <= 10; i++) {

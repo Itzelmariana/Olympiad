@@ -3,7 +3,6 @@ import Canvas2 from '../components/Canvas2';
 import { Link } from 'react-router-dom';
 import { Navigate, useParams } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/client';
-// import Chatbox from '../components/Chatbox';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
 
@@ -175,7 +174,6 @@ const Multi = () => {
     chatText: { chatText },
     locationP1X: { locationP1X },
     locationP2X: { locationP2X },
-
   };
 
   useEffect(() => {
@@ -344,6 +342,11 @@ const Multi = () => {
           <Canvas2 {...props} />
         </div>
         <div className='col-sm-12 col-md-3 col-lg-2 myMultiOther'>
+          <div className="form-group" id="slider">
+            <h5>Volume</h5>
+            <input type="range" className="form-control-range" id="formControlRange" defaultValue="0.30" min="0" max="1"
+              step="0.01"></input>
+          </div>
           CHAT
           <input
             type='text'
