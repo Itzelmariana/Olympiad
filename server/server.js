@@ -91,15 +91,18 @@ io.on('connection', (socket) => {
     io.in(room).emit("getMessage", message);
   });
 
-  socket.on('changePlayerTurn', (playerTurn) => {
+  socket.on('changePlayerTurn', (turnNumber) => {
     // console.log(playerTurn);
-    io.in(room).emit("newPlayerTurn", playerTurn);
-
+    io.in(room).emit("newPlayerTurn", turnNumber);
   });
 
   socket.on('player1Move', (locationP1X) => {
     console.log(locationP1X);
     io.in(room).emit("player1Position", locationP1X);
+  });
+  socket.on('player2Move', (locationP2X) => {
+    console.log(locationP2X);
+    io.in(room).emit("player2Position", locationP2X);
   });
 
 

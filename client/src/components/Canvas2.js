@@ -21,7 +21,7 @@ const Canvas = (props) => {
   useEffect(() => {
     const ctx = canvas.current.getContext('2d');
     setNewX(props.locationP1X.locationP1X, newX);
-    setNewOpponentX(props.locationOpponent.locationOpponent, newOpponentX);
+    setNewOpponentX(props.locationP2X.locationP2X, newOpponentX);
     const pawn = new Image();
     pawn.src = '/pawn1.png'
 
@@ -138,7 +138,7 @@ const Canvas = (props) => {
       then = now - (elapsed % fpsInterval);
       draw();
     }
-  }, [props.locationP1X.locationP1X, newX, props.locationOpponent.locationOpponent, newOpponentX])
+  }, [props.locationP1X.locationP1X, newX, props.locationP2X.locationP2X, newOpponentX])
   // ============================================
 
   // CREATES THE CANVAS

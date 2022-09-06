@@ -28,7 +28,7 @@ import Chatbox from '../components/Chatbox';
 let screenWidth = window.innerWidth / 2;
 // let screenHeight = window.innerHeight / 2;
 
-let locationOpponent = (screenWidth / 10) * 9;
+
 
 
 
@@ -44,12 +44,14 @@ let q = [];
 let answerOptions = [];
 // CORRECT ANSWER TO COMPARE CHOICE TO
 let correct = [];
+let firstQuestion = 0;
 function getQuestion() {
+  firstQuestion++;
   // GET RANDOM NUMBER
   let randomQuestion = Math.floor(Math.random() * 5);
   // console.log('random' + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
-  let qa = qArray[randomQuestion];
+  let qa = qArray[firstQuestion];
   answerOptions = [];
 
   // console.log(qa);
@@ -129,10 +131,7 @@ socket.on('whatPlayerAmI', (numClients) => {
   }
 });
 
-socket.on('newPlayerTurn', (playerTurn) => {
-  // playerTurn = playerTurn;
-  // console.log(`Turn Number: ${playerTurn}`);
-});
+
 
 
 
@@ -144,26 +143,38 @@ const Multi = () => {
 
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
+
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
-  const [ignoranceScore, setIgnoranceScore] = useState(0);
+  const [player2Score, setplayer2Score] = useState(0);
+
   const [message, setMessage] = useState('');
-  const [playerTurn, setPlayerTurn] = useState(1);
   const [chatText, setChatText] = useState([]);
+
+  const [playerTurn, setPlayerTurn] = useState(1);
+
   const [locationP1X, setLocation] = useState(0);
-  const [newlocationP1X, setNewLocationP1X] = useState(0)
+  const [locationP2X, setLocationP2X] = useState(0)
   // ==========================================================USE EFFECT
   socket.on('player1Position', (newCoords) => {
     console.log("?????????????");
     console.log(newCoords)
     setLocation(newCoords);
-  })
-  
+  });
+  socket.on('player2Position', (newCoords) => {
+    console.log("++++++++++++");
+    console.log(newCoords)
+    setLocationP2X(newCoords);
+  });
+  socket.on('newPlayerTurn', (turnNumber) => {
+    console.log(`Turn Number: ${turnNumber}`);
+    setPlayerTurn(turnNumber);
+  });
 
   let props = {
     chatText: { chatText },
     locationP1X: { locationP1X },
-    locationOpponent: { locationOpponent },
+    locationP2X: { locationP2X },
 
   };
 
@@ -233,29 +244,37 @@ const Multi = () => {
 
   // HANDLE ANSWER OPTIONS WHEN CLICKED ================
   let whatever;
+  let turnNumber;
   const handleAnswerOptionClick = (isCorrect) => {
-    if (myPlayer) {
+
+    if (myPlayer === playerTurn) {
       if (isCorrect) {
-        setScore(score + 1);
-        whatever = locationP1X + screenWidth / 10;
-        socket.emit('player1Move', whatever);
-        // setLocation(locationP1X + whatever);
+        if (myPlayer === 1) {
+          setScore(score + 1);
+          whatever = locationP1X + screenWidth / 10;
+          socket.emit('player1Move', whatever);
+          // setLocation(locationP1X + whatever);
+          turnNumber = 2;
+          socket.emit("changePlayerTurn", turnNumber);
+        } else if (myPlayer === 2) {
+          setplayer2Score(player2Score + 1);
+          whatever = locationP2X + screenWidth / 10;
+          socket.emit('player2Move', whatever);
+
+          turnNumber = 1;
+          socket.emit("changePlayerTurn", turnNumber);
+        }
+
 
       } else {
-        // setIgnoranceScore(ignoranceScore + 1);
+        // setplayer2Score(player2Score + 1);
         // locationOpponent = locationOpponent - screenWidth / 10;
       }
       console.log(whatever);
 
       const nextQuestion = currentQuestion;
-      if (playerTurn === 1) {
-        setPlayerTurn(2);
-        socket.emit("changePlayerTurn", `${playerTurn}`);
-      } else {
-        setPlayerTurn(1);
-        socket.emit("changePlayerTurn", `${playerTurn}`);
-      }
-      if (nextQuestion < 50 && score < 9 && ignoranceScore < 9) {
+
+      if (nextQuestion < 50 && score < 9 && player2Score < 9) {
         getQuestion();
         setCurrentQuestion(currentQuestion + 1);
       } else {
@@ -273,26 +292,6 @@ const Multi = () => {
   let decodedText = q[currentQuestion].questionText;
   let newDecodedText = he.decode(decodedText);
   // console.log('DECODED: ' + newDecodedText);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   // CHAT MESSANGE HANDLERS
   const handleMessageClick = () => {
