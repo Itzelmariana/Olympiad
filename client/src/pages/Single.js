@@ -174,6 +174,9 @@ export default function Single() {
 
   // HANDLE ANSWER OPTIONS WHEN CLICKED ================
   const handleAnswerOptionClick = (isCorrect) => {
+    let audio = new Audio('aq.mp3');
+    audio.play();
+
     if (isCorrect) {
       setScore(score + 1);
       location = location + screenWidth / 10;
