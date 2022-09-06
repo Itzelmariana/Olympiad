@@ -180,9 +180,13 @@ export default function Single() {
     if (isCorrect) {
       setScore(score + 1);
       location = location + screenWidth / 10;
+      let audio = new Audio('win.mp3');
+      audio.play();
     } else {
       setIgnoranceScore(ignoranceScore + 1);
       locationOpponent = locationOpponent - screenWidth / 10;
+      let audio = new Audio('wrong.mp3');
+      audio.play();
     }
 
     const nextQuestion = currentQuestion;
