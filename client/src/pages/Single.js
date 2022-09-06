@@ -166,7 +166,7 @@ export default function Single() {
 
   // HANDLE ANSWER OPTIONS WHEN CLICKED ================
   const handleAnswerOptionClick = (isCorrect) => {
-    var audio = new Audio('aq.mp3');
+    let audio = new Audio('aq.mp3');
     audio.play();
 
     if (isCorrect) {
