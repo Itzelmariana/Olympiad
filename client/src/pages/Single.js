@@ -12,6 +12,8 @@ import './Single.css';
 
 import axios from 'axios';
 
+//import Audio from '../components/Audio';
+
 const url =
   'https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple';
 const questionArray = [];
@@ -165,7 +167,14 @@ export default function Single() {
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
 
   // HANDLE ANSWER OPTIONS WHEN CLICKED ================
+  // const play = () => {
+  //   audio.play();
+  // }
+
   const handleAnswerOptionClick = (isCorrect) => {
+    var audio = new Audio('aq.mp3');
+    audio.play();
+
     if (isCorrect) {
       setScore(score + 1);
       location = location + screenWidth / 10;
