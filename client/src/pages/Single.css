@@ -64,11 +64,12 @@
 }
 
 .canvasBorder {
+  display: flex;
   margin: 0;
   padding: 0;
   width: fit-content;
   border: 1px solid black;
-  height:min-content;
+  /* height:min-content; */
   border-radius: 10px;
   -webkit-box-shadow: 6px 7px 21px 7px rgba(0, 0, 0, 0.94);
   box-shadow: 6px 7px 21px 7px rgba(0, 0, 0, 0.94);
