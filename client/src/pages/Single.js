@@ -7,7 +7,6 @@ import { useMutation, useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
-import SingleBoard from '../components/SingleBoard';
 
 
 import Auth from '../utils/auth';
