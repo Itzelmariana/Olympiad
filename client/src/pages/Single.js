@@ -13,7 +13,8 @@ import './Single.css';
 
 //import axios from 'axios';
 
-let questionArray = require('./q');
+// let questionArray = require('./q');
+let questionArray = require('./history');
 questionArray = questionArray.default;
 console.log(questionArray);
 // const url = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple";
