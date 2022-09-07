@@ -1,6 +1,10 @@
 {
   "name": "olympiad",
   "version": "1.0.0",
+  "engines": {
+    "npm": "8.11.0",
+    "node": "16.16.0"
+  },
   "description": "",
   "main": "server/server.js",
   "scripts": {
@@ -19,9 +23,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.17.1",
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "use-sound": "^4.0.1"
+    "use-sound": "^4.0.1",
+    "nodemon": "^2.0.4"
   }
 }
