@@ -17,7 +17,9 @@ const DonationNav = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header>
-          <Modal.Title>Support our project</Modal.Title>
+          <Modal.Title>
+            <h1>Support our project</h1>
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Donation />
