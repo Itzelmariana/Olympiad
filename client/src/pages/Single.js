@@ -44,7 +44,7 @@ let answerOptions = [];
 let correct = [];
 function getQuestion() {
   // GET RANDOM NUMBER
-  let randomQuestion = Math.floor(Math.random() * 5);
+  let randomQuestion = Math.floor(Math.random() * 50);
   console.log('random' + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
   let qa = questionArray[randomQuestion];
