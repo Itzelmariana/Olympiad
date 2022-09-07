@@ -3,12 +3,12 @@ import useSound from 'use-sound';
 import './Footer.css';
 
 const Footer = () => {
-  const chillUrl = '/chill.mp3';
+  const chillUrl = '/beep.mp3';
 
   const [play, { stop }] = useSound(chillUrl, {
     autoplay: false,
     loop: true,
-    volume: 0.5,
+    volume: 0.2,
   });
 
   return (

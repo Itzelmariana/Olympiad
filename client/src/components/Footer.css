@@ -5,8 +5,13 @@
   border: 3px solid var(--beige2);
   height: fit-content;
   width: fit-content;
+
 }
 
 .Footer span:hover {
   opacity: 0.6;
+}
+
+button {
+  overflow-y: hidden;
 }

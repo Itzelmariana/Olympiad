@@ -8,6 +8,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
 
+
 import Auth from '../utils/auth';
 import './Single.css';
 
@@ -43,7 +44,7 @@ let answerOptions = [];
 let correct = [];
 function getQuestion() {
   // GET RANDOM NUMBER
-  let randomQuestion = Math.floor(Math.random() * 5);
+  let randomQuestion = Math.floor(Math.random() * 50);
   console.log('random' + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
   let qa = questionArray[randomQuestion];
@@ -174,11 +175,13 @@ export default function Single() {
       setScore(score + 1);
       location = location + screenWidth / 10;
       let audio = new Audio('win.mp3');
+      audio.volume = 0.1;
       audio.play();
     } else {
       setIgnoranceScore(ignoranceScore + 1);
       locationOpponent = locationOpponent - screenWidth / 10;
       let audio = new Audio('wrong.mp3');
+      audio.volume = 0.1;
       audio.play();
     }
 

@@ -13,18 +13,22 @@
   padding-top: 12px;
   padding-bottom: 12px;
 }
+
 .Single .myQuestions {
   color: #085aa4;
   font-weight: 400;
 }
+
 .Single .myBtn {
   font-weight: 300;
 }
+
 .Single .myBtn:hover {
   background: var(--beige2);
   color: white;
   border-radius: 10px;
 }
+
 .Single {
   background-image: url('../images/bgGame3.jpeg');
   background-size: cover;
@@ -58,10 +62,14 @@
   text-decoration: none;
   color: white;
 }
+
 .canvasBorder {
+  display: flex;
+  margin: 0;
+  padding: 0;
   width: fit-content;
   border: 1px solid black;
-  height: fit-content;
+  /* height:min-content; */
   border-radius: 10px;
   -webkit-box-shadow: 6px 7px 21px 7px rgba(0, 0, 0, 0.94);
   box-shadow: 6px 7px 21px 7px rgba(0, 0, 0, 0.94);

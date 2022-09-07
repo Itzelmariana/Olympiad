@@ -206,8 +206,13 @@ const Multi = () => {
   const handleAnswerOptionClick = (isCorrect) => {
     if (myPlayer === playerTurn) {
       if (isCorrect) {
+        let audio = new Audio('aq.mp3');
+        audio.play();
         if (myPlayer === 1) {
           setScore(score + 1);
+          let audio = new Audio('win.mp3');
+          audio.volume = 0.1;
+          audio.play();
           whatever = locationP1X + screenWidth / 10;
           socket.emit('player1Move', whatever);
           // setLocation(locationP1X + whatever);
@@ -215,6 +220,9 @@ const Multi = () => {
           socket.emit('changePlayerTurn', turnNumber);
         } else if (myPlayer === 2) {
           setplayer2Score(player2Score + 1);
+          let audio = new Audio('win.mp3');
+          audio.volume = 0.1;
+          audio.play();
           whatever = locationP2X + screenWidth / 10;
           socket.emit('player2Move', whatever);
 

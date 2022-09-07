@@ -17,7 +17,7 @@ const Navbar = () => {
   return (
     <div className=' Navbar row fixed-top'>
       <div className='homeNav col col-md-8 col-lg-8 pr-2'>
-        <Link to='/'>
+        <Link to='/' onClick={() => {window.location.href="/"}}>
           <img src={home} alt='Home button' width={'90px'} />
         </Link>
       </div>
