@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 
-[Here is the link to Olympiad!](https://olympiad-game.herokuapp.com/?room=6847f) 
+[Here is the link to Olympiad!](https://olympiad-game.herokuapp.com) 
 ![landing page](./client/public/landing-page.jpg)
 
 ## Description
