@@ -12,6 +12,8 @@ import Signup from '../components/Signup';
 import logoutIcon from '../images/logout.png';
 
 import './Home.css';
+import useSound from 'use-sound';
+
 
 const Home = () => {
   const [state, setState] = useState({
@@ -36,8 +38,24 @@ const Home = () => {
     Auth.logout();
   };
 
+  const chillUrl = '/chill.mp3';
+
+  const [isHovering, setIsHovering] = React.useState(
+    false
+  );
+  let playing = true;
+  const BoopButton = () => {
+
+    const [play, { stop }] = useSound(chillUrl);
+
+    return <button onClick={play}>▶</button>;
+  };
+
+
   return (
+
     <header className='Home container'>
+
       <div>
         <Link to='/'>
           <h1 className='align-center text-center'>
@@ -49,6 +67,7 @@ const Home = () => {
               alt='logo'
               width={'60%'}
             />
+
           </h1>
         </Link>
 
@@ -123,6 +142,7 @@ const Home = () => {
           )}
         </div>
       </div>
+      <BoopButton />
     </header>
   );
 };

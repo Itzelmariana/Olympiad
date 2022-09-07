@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 //const socket = io.connect("http://localhost:3002")
 
 let screenWidth = window.innerWidth / 2;
-let screenHeight = window.innerHeight / 2;
+let screenHeight = window.innerHeight / 4;
 
 
 
 // let newX = 0;
 let newY = 0;
+
 
 const Canvas = (props) => {
   console.log(props.location.location);
@@ -56,7 +57,7 @@ const Canvas = (props) => {
     class Opponent {
       constructor() {
         this.x = newOpponentX;
-        this.y = (screenHeight / 10) * 8;
+        this.y = (screenHeight / 2);
       }
       exist() {
         ctx.drawImage(pawn2, newOpponentX, this.y, (window.innerWidth / 10) / 2, (window.innerHeight / 5) / 2);
@@ -85,17 +86,30 @@ const Canvas = (props) => {
     function draw() {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
-      // Create gradient
-      var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
-      grd.addColorStop(0, 'red');
-      grd.addColorStop(0.25, 'yellow');
-      grd.addColorStop(0.5, 'green');
-      grd.addColorStop(0.75, 'blue');
-      grd.addColorStop(1, 'violet');
+ // Create gradient
+ var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
+ grd.addColorStop(0, 'black');
+ grd.addColorStop(0.25, 'grey');
+ grd.addColorStop(0.5, 'grey');
+ grd.addColorStop(0.75, 'grey');
+ grd.addColorStop(1, 'white');
 
-      // Fill with gradient
-      ctx.fillStyle = grd;
-      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+ // Fill with gradient
+ ctx.fillStyle = grd;
+ ctx.fillRect(0, ctx.canvas.height / 2, ctx.canvas.width, ctx.canvas.height / 2);
+
+
+ // Create gradient
+ var grd2 = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
+ grd2.addColorStop(0, 'red');
+ grd2.addColorStop(0.25, 'yellow');
+ grd2.addColorStop(0.5, 'green');
+ grd2.addColorStop(0.75, 'blue');
+ grd2.addColorStop(1, 'violet');
+
+ // Fill with gradient
+ ctx.fillStyle = grd2;
+ ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height / 2);
 
       // Create vertical grid lines
       for (let i = 0; i <= 10; i++) {
@@ -104,10 +118,10 @@ const Canvas = (props) => {
         ctx.lineTo((screenWidth / 10) * i, screenHeight);
         ctx.stroke();
       }
-      for (let i = 0; i <= 4; i++) {
+      for (let i = 0; i <= 2; i++) {
         ctx.beginPath();
-        ctx.moveTo(0, screenHeight / 4 * i);
-        ctx.lineTo(screenWidth, screenHeight / 4 * i);
+        ctx.moveTo(0, screenHeight / 2 * i);
+        ctx.lineTo(screenWidth, screenHeight / 2 * i);
         ctx.stroke();
       }
 
