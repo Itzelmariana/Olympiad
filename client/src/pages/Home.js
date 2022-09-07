@@ -40,13 +40,13 @@ const Home = () => {
 
   const chillUrl = '/chill.mp3';
 
-  const [isHovering, setIsHovering] = React.useState(
-    false
-  );
-  let playing = true;
   const BoopButton = () => {
 
-    const [play, { stop }] = useSound(chillUrl);
+    const [play, { stop }] = useSound(chillUrl, {
+      autoplay: true,
+      loop: true,
+      volume: 0.5,
+    });
 
     return <button onClick={play}>▶</button>;
   };
