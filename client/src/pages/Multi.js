@@ -96,7 +96,7 @@ let myPlayer;
 // IF NO ROOM, GENERATE A ROOM NAME AND CONNECT - OTHERWISE USE PROVIDED ROOM IN URL
 const room = getQueryParameter('room') || getRandomString(5);
 // CONNECT TO ROOM WITHIN URL
-let socket = io(`localhost:3002/?room=${room}`);
+let socket = io(`${window.location.hostname}:3002/?room=${room}`);
 if (window.location.href.indexOf('multiplayer') === -1) {
   window.history.replaceState(
     {},
