@@ -7,13 +7,11 @@ import { useMutation, useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
-import SingleBoard from '../components/SingleBoard';
-
 
 import Auth from '../utils/auth';
 import './Single.css';
 
-import axios from "axios";
+//import axios from 'axios';
 
 let questionArray = require('./q');
 questionArray = questionArray.default;
@@ -33,8 +31,6 @@ let screenWidth = window.innerWidth / 2;
 // let screenHeight = window.innerHeight / 2;
 let location = 0;
 let locationOpponent = (screenWidth / 10) * 9;
-
-
 
 // ============================================================================
 // const questionArray = require('./q');
@@ -100,7 +96,6 @@ function shuffle(array) {
 }
 // ============================================================================
 
-
 // REACT STARTS HERE
 export default function Single() {
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -133,13 +128,10 @@ export default function Single() {
     getQuestion();
   }, []);
 
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [ignoranceScore, setIgnoranceScore] = useState(0);
-
-
 
   // AUTHORIZATION
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -254,7 +246,7 @@ export default function Single() {
             </div>
             <div className='col-sm-12 col-md-8 col-lg-9'>
               <SingleBoard />
-               <div className='canvasBorder '>
+              <div className='canvasBorder '>
                 <Canvas {...props} />
               </div>
             </div>
@@ -295,11 +287,10 @@ export default function Single() {
               </div>
               <div className='col-sm-12 col-md-8 col-lg-9 sBoard'>
                 <SingleBoard />
-                 <div className='canvasBorder '>
-                   <Canvas {...props} />
+                <div className='canvasBorder '>
+                  <Canvas {...props} />
+                </div>
               </div>
-              </div>
-
             </div>
           </>
         )}

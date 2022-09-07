@@ -14,8 +14,7 @@ import Single from './pages/Single';
 import Multi from './pages/Multi';
 
 import Navbar from './components/Navbar';
-
-
+import Footer from './components/Footer';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -56,6 +55,9 @@ function App() {
               element={<h1 className='text-center myWrongPage'>Wrong page!</h1>}
             />
           </Routes>
+        </div>
+        <div>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

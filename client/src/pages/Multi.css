@@ -3,25 +3,74 @@
   margin-top: 150px;
 }
 .Multi {
-  background-image: url('../images/bgGame.jpeg');
+  background-image: url('../images/bgGame3.jpeg');
   background-size: cover;
   width: 100vw;
   height: 100vh;
 }
 .myMultiUser {
-  margin-top: 150px;
-  color: aliceblue;
+  color: var(--blue4);
+  font-family: 'Mali', cursive;
+  background: var(--beige);
+  width: fit-content;
+  border-radius: 20px;
+  border: 3px solid var(--beige2);
+  align-content: center;
+  text-align: center;
+  margin: 120px auto 5px;
+}
+.Multi .myCard {
+  border: 2px solid rgb(205, 205, 205);
+  border-radius: 15px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+}
+.Multi .myQuestions {
+  color: #085aa4;
+  font-weight: 400;
+}
+.Multi .myBtn {
+  font-weight: 300;
+}
+.Multi .myBtn:hover {
+  background: var(--beige2);
+  color: white;
+  border-radius: 10px;
 }
 .Multi .myMultiBoard {
   margin-top: 150px;
-  color: aliceblue;
+  text-align: left;
 }
 .Multi .myMultiOther {
   margin-top: 150px;
-  color: aliceblue;
+  text-align: left;
+}
+.myBtnChat {
+  border: 1px solid var(--beige);
+  background: var(--beige);
+  font-family: 'Mali', cursive;
+  color: var(--blue4);
+  padding: 8px 10px 8px 10px;
+  border: 3px solid var(--beige2);
+  border-radius: 10px;
+}
+.chatbox {
+  background: rgb(0, 0, 0, 0.6);
+  width: 200px;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
 }
 
 .loading {
   margin-top: 100px;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .Multi .myMultiBoard,
+  .Multi .myMultiOther {
+    margin-top: 0;
+    text-align: center;
+  }
 }
