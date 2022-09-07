@@ -44,22 +44,29 @@
 .Multi .myMultiOther {
   margin-top: 150px;
   text-align: left;
+  color: var(--blue4);
+  font-family: 'Mali', cursive;
+}
+.myChat {
+  border: 3px solid var(--beige2);
+  background: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
 }
 .myBtnChat {
   border: 1px solid var(--beige);
   background: var(--beige);
   font-family: 'Mali', cursive;
   color: var(--blue4);
-  padding: 8px 10px 8px 10px;
+  padding: 5px 8px 5px 8px;
   border: 3px solid var(--beige2);
   border-radius: 10px;
 }
 .chatbox {
-  background: rgb(0, 0, 0, 0.6);
-  width: 200px;
   border-radius: 10px;
-  padding: 10px;
+  padding: 5px;
   color: white;
+  border-radius: 10px;
 }
 
 .loading {
@@ -72,5 +79,9 @@
   .Multi .myMultiOther {
     margin-top: 0;
     text-align: center;
+  }
+  .myChat {
+    width: fit-content;
+    margin: 0 auto;
   }
 }
