@@ -35,6 +35,9 @@ Once both players have accessed the game, each player will take turns answering 
 
 <img src="./client/public/multi.jpg" alt="multiplayer" width="500"/>
 
+## Technologies Used 💻
+
+This application was built using the MERN stack. We used Bootstrap as our CSS library. JWT and bycrypt for authentication. Our backend team used socket.io and canvas for the game logic and execution. 
 
 # Team ✨
 
