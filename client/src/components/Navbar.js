@@ -17,7 +17,12 @@ const Navbar = () => {
   return (
     <div className=' Navbar row fixed-top'>
       <div className='homeNav col col-md-8 col-lg-8 pr-2'>
-        <Link to='/' onClick={() => {window.location.href="/"}}>
+        <Link
+          to='/'
+          onClick={() => {
+            window.location.href = '/';
+          }}
+        >
           <img src={home} alt='Home button' width={'90px'} />
         </Link>
       </div>
@@ -32,25 +37,31 @@ const Navbar = () => {
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header>
-            <Modal.Title>How to Play</Modal.Title>
+            <Modal.Title>
+              <h1>How to Play</h1>
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {' '}
-            Welcome to Olympiad! We are a community of trivia fanatics. Sign up
-            or login to flex your trivia knowledge! Once you have created your
-            account, you can begin by selecting the single player option. You
-            can also invite friends by selecting the multiplayer option. This
-            game was insprired by the poplular trivia board game, Marathon,
-            played in Mexico!
-            <br></br>
-            <br></br>
-            The objective is to win against your own ignorance. To play, answer
-            the multiple choice questions correctly to advance your token
-            forward towards the finish line. If you answer a question
-            incorrectly, the oppsoing token, representing your ignorance, will
-            move towards their finish line. Whichever token reaches the finish
-            line first, wins! Will you be brave enough and challenge your own
-            ignorance?
+            <h2>Welcome to Olympiad!</h2>
+            <p>
+              We are a community of trivia fanatics. Sign up or login to flex
+              your trivia knowledge!
+            </p>
+            <p>
+              Once you have created your account, you can begin by selecting the
+              single player option. You can also invite friends by selecting the
+              multiplayer option. This game was insprired by the poplular trivia
+              board game, Marathon, played in Mexico!
+            </p>
+            <p>
+              The objective is to win against your own ignorance. To play,
+              answer the multiple choice questions correctly to advance your
+              token forward towards the finish line. If you answer a question
+              incorrectly, the oppsoing token, representing your ignorance, will
+              move towards their finish line. Whichever token reaches the finish
+              line first, wins! Will you be brave enough and challenge your own
+              ignorance?
+            </p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleClose}>

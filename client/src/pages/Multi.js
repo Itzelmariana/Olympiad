@@ -37,7 +37,7 @@ let firstQuestion = 0;
 function getQuestion() {
   firstQuestion++;
   // GET RANDOM NUMBER
-  let randomQuestion = Math.floor(Math.random() * 5);
+  // let randomQuestion = Math.floor(Math.random() * 5);
   // console.log('random' + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
   let qa = qArray[firstQuestion];
@@ -125,7 +125,7 @@ const Multi = () => {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  const [showScore, setShowScore] = useState(false);
+  //const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [player2Score, setplayer2Score] = useState(0);
 
@@ -240,8 +240,8 @@ const Multi = () => {
       if (nextQuestion < 50 && score < 9 && player2Score < 9) {
         getQuestion();
         setCurrentQuestion(currentQuestion + 1);
-      } else {
-        setShowScore(true);
+        // } else {
+        //   setShowScore(true);
       }
     }
   };
@@ -304,18 +304,20 @@ const Multi = () => {
           <Canvas2 {...props} />
         </div>
         <div className='col-sm-12 col-md-3 col-lg-3 myMultiOther'>
-          CHAT
-          <input
-            type='text'
-            id='message'
-            name='message'
-            onChange={handleChange}
-            value={message}
-          />
-          <button className='myBtnChat' onClick={() => handleMessageClick()}>
-            SEND
-          </button>
-          <div className='chatbox'>
+          <div className=' myChat'>
+            <div className='mb-2'>Chat</div>
+            <input
+              type='text'
+              id='message'
+              name='message'
+              className='chatbox'
+              onChange={handleChange}
+              value={message}
+              placeholder='type your message..'
+            />
+            <button className='myBtnChat' onClick={() => handleMessageClick()}>
+              Send
+            </button>
             <Chatbox {...props} />
           </div>
         </div>
