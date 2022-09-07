@@ -21,6 +21,30 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "use-sound": "^4.0.1"
+    "use-sound": "^4.0.1",
+    "apollo-server-express": "^3.6.2",
+    "bcrypt": "^5.0.0",
+    "express": "^4.17.2",
+    "graphql": "^16.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8",
+    "socket.io": "^4.5.1",
+    "@apollo/client": "^3.5.8",
+    "@paypal/react-paypal-js": "^7.8.1",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
+    "dispatch": "^1.0.2",
+    "he": "^1.2.0",
+    "jwt-decode": "^3.1.2",
+    "react": "^17.0.1",
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "4.0.1",
+    "socket.io-client": "^4.5.2",
+    "web-vitals": "^0.2.4"
   }
 }
