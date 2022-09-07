@@ -1,0 +1,12 @@
+.Footer span {
+  font-size: 30px;
+  padding: 10px;
+  background: var(--beige);
+  border: 3px solid var(--beige2);
+  height: fit-content;
+  width: fit-content;
+}
+
+.Footer span:hover {
+  opacity: 0.6;
+}

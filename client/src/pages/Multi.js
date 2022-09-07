@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Canvas2 from '../components/Canvas2';
 import { Link } from 'react-router-dom';
 import { Navigate, useParams } from 'react-router-dom';
-import { useMutation, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 import './Multi.css';
@@ -23,17 +22,8 @@ import Chatbox from '../components/Chatbox';
 
 // ============================================================================
 
-
 let screenWidth = window.innerWidth / 2;
 // let screenHeight = window.innerHeight / 2;
-
-
-
-
-
-
-
-
 
 // const questionArray = require('./q');
 var he = require('he');
@@ -107,14 +97,13 @@ let myPlayer;
 const room = getQueryParameter('room') || getRandomString(5);
 // CONNECT TO ROOM WITHIN URL
 let socket = io(`localhost:3002/?room=${room}`);
-if (window.location.href.indexOf("multiplayer") === -1) {
+if (window.location.href.indexOf('multiplayer') === -1) {
   window.history.replaceState(
     {},
     document.title,
     updateQueryParameter('room', room)
   );
 }
-
 
 // ANNOUNCE NEW PLAYERS WHEN THEY JOIN
 socket.on('playerJoined', (i) => {
@@ -130,16 +119,9 @@ socket.on('whatPlayerAmI', (numClients) => {
   }
 });
 
-
-
-
-
-
 const Multi = () => {
   // STATES
   // ==================================================
-
-
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -153,16 +135,16 @@ const Multi = () => {
   const [playerTurn, setPlayerTurn] = useState(1);
 
   const [locationP1X, setLocation] = useState(0);
-  const [locationP2X, setLocationP2X] = useState(0)
+  const [locationP2X, setLocationP2X] = useState(0);
   // ==========================================================USE EFFECT
   socket.on('player1Position', (newCoords) => {
-    console.log("?????????????");
-    console.log(newCoords)
+    console.log('?????????????');
+    console.log(newCoords);
     setLocation(newCoords);
   });
   socket.on('player2Position', (newCoords) => {
-    console.log("++++++++++++");
-    console.log(newCoords)
+    console.log('++++++++++++');
+    console.log(newCoords);
     setLocationP2X(newCoords);
   });
   socket.on('newPlayerTurn', (turnNumber) => {
@@ -183,29 +165,7 @@ const Multi = () => {
   }, [chatText]);
 
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
-  const [callAddWinApi] = useMutation(ADD_WIN);
 
-  const addWin = async () => {
-    try {
-      await callAddWinApi({
-        variables: { win: 1 },
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const [callAddLoseApi] = useMutation(ADD_LOSE);
-
-  const addLose = async () => {
-    try {
-      await callAddLoseApi({
-        variables: { lose: 1 },
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
 
   // AUTHORIZATION
@@ -244,7 +204,6 @@ const Multi = () => {
   let whatever;
   let turnNumber;
   const handleAnswerOptionClick = (isCorrect) => {
-
     if (myPlayer === playerTurn) {
       if (isCorrect) {
         if (myPlayer === 1) {
@@ -253,17 +212,15 @@ const Multi = () => {
           socket.emit('player1Move', whatever);
           // setLocation(locationP1X + whatever);
           turnNumber = 2;
-          socket.emit("changePlayerTurn", turnNumber);
+          socket.emit('changePlayerTurn', turnNumber);
         } else if (myPlayer === 2) {
           setplayer2Score(player2Score + 1);
           whatever = locationP2X + screenWidth / 10;
           socket.emit('player2Move', whatever);
 
           turnNumber = 1;
-          socket.emit("changePlayerTurn", turnNumber);
+          socket.emit('changePlayerTurn', turnNumber);
         }
-
-
       } else {
         // setplayer2Score(player2Score + 1);
         // locationOpponent = locationOpponent - screenWidth / 10;
@@ -277,13 +234,7 @@ const Multi = () => {
         setCurrentQuestion(currentQuestion + 1);
       } else {
         setShowScore(true);
-        if (score === 10) {
-          addWin();
-        } else {
-          addLose();
-        }
       }
-
     }
   };
 
@@ -293,8 +244,7 @@ const Multi = () => {
 
   // CHAT MESSANGE HANDLERS
   const handleMessageClick = () => {
-
-    socket.emit("sendMessage", `${message}`);
+    socket.emit('sendMessage', `${message}`);
     // console.log(message);
   };
 
@@ -305,11 +255,10 @@ const Multi = () => {
   };
   // ========================================================
 
-
   return (
     <div className='Multi'>
       <div className='row text-center'>
-        <div className='col-sm-12 col-md-3 col-lg-2'>
+        <div className='col-sm-12 col-md-3 col-lg-3'>
           <h2 className='btn btn-block myMultiUser'>
             {profileId ? `${profile.name}'s` : ' '}
             {profile.name}
@@ -319,9 +268,7 @@ const Multi = () => {
               <div className='question-count'>
                 <span>Question {currentQuestion + 1}</span>
               </div>
-              <div className='question-text myQuestions'>
-                {newDecodedText}
-              </div>
+              <div className='question-text myQuestions'>{newDecodedText}</div>
             </div>
             <div className='answer-sections'>
               {q[currentQuestion].answerOptions.map((answerOption) => (
@@ -338,10 +285,17 @@ const Multi = () => {
             </div>
           </div>
         </div>
-        <div className='col-sm-12 col-md-6 col-lg-8 myMultiBoard'>
+        <div className='col-sm-12 col-md-6 col-lg-6 myMultiBoard'>
+          <Link
+            to='/multiplayer'
+            onClick={() => window.location.reload()}
+            className='myBtnPlayagain mb-3'
+          >
+            Play again
+          </Link>
           <Canvas2 {...props} />
         </div>
-        <div className='col-sm-12 col-md-3 col-lg-2 myMultiOther'>
+        <div className='col-sm-12 col-md-3 col-lg-3 myMultiOther'>
           CHAT
           <input
             type='text'
@@ -350,11 +304,12 @@ const Multi = () => {
             onChange={handleChange}
             value={message}
           />
-          <button className='btn-primary'
-            onClick={() =>
-              handleMessageClick()
-            }>SEND</button>
-          <Chatbox {...props} />
+          <button className='myBtnChat' onClick={() => handleMessageClick()}>
+            SEND
+          </button>
+          <div className='chatbox'>
+            <Chatbox {...props} />
+          </div>
         </div>
       </div>
     </div>
