@@ -4,20 +4,22 @@
   "description": "",
   "main": "server/server.js",
   "scripts": {
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "npm run install:client && npm run install:server",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "start": "node server/server.js",
     "install:client": "(cd ./client && npm install)",
     "install:server": "(cd ./server && npm install)",
     "seed": "(cd ./server && npm run seed)",
     "build": "(cd ./client && npm run build)",
     "start:client": "(cd ./client && npm start)",
-    "start:server": "(cd ./server && npm start)"
+    "start:server": "(cd ./server && npm start)",
+    "start:prod": "(cd ./server && npm run server)"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "express": "^4.17.1",
     "concurrently": "^5.1.0"
   },
   "dependencies": {
