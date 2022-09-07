@@ -20,7 +20,8 @@
   "license": "ISC",
   "devDependencies": {
     "express": "^4.17.1",
-    "concurrently": "^5.1.0"
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.3"
   },
   "dependencies": {
     "use-sound": "^4.0.1",
