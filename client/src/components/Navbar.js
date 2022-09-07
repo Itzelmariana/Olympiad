@@ -53,6 +53,7 @@ const Navbar = () => {
               multiplayer option. This game was insprired by the poplular trivia
               board game, Marathon, played in Mexico!
             </p>
+            <h3>Single Player</h3>
             <p>
               The objective is to win against your own ignorance. To play,
               answer the multiple choice questions correctly to advance your
@@ -62,6 +63,7 @@ const Navbar = () => {
               line first, wins! Will you be brave enough and challenge your own
               ignorance?
             </p>
+            <h3>Multiplayer Player</h3>
             <p>
               To access the muliplayer game one player should first login. Once
               they are logged in, the player can share their URL with player 2.
