@@ -12,8 +12,7 @@
     "seed": "(cd ./server && npm run seed)",
     "build": "(cd ./client && npm run build)",
     "start:client": "(cd ./client && npm run start)",
-    "start:server": "(cd ./server && npm run start:watch)",
-    "start:prod": "(cd ./server && npm run server)"
+    "start:server": "(cd ./server && npm run start)"
   },
   "keywords": [],
   "author": "",
