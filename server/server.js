@@ -52,7 +52,7 @@ const http = require('http').Server(app);
 
 const io = require('socket.io')(http, {
   cors: {
-    origins: ['https://olympiad-game.herokuapp.com/'],
+    origins: ['http://olympiad-game.herokuapp.com/'],
   },
 });
 
