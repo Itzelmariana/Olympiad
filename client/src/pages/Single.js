@@ -174,7 +174,9 @@ export default function Single() {
 
     if (isCorrect) {
       setScore(score + 1);
-      location = location + screenWidth / 10;
+      let scoreLocation = score + 1;
+      setTimeout(location = scoreLocation * (screenWidth / 10));
+      location = scoreLocation * (screenWidth / 10);
       let audio = new Audio('win.mp3');
       audio.volume = 0.1;
       audio.play();
@@ -207,6 +209,7 @@ export default function Single() {
   let props = {
     location: { location },
     locationOpponent: { locationOpponent },
+    score: { score }
   };
 
   return (

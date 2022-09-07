@@ -8,7 +8,7 @@ const SingleBoard = () => {
     <div className='SingleBoard'>
       <Link
         to='/singleplayer'
-        onClick={() => window.location.reload()}
+        onClick={() => window.location.reload(false)}
         className='myBtnPlayagain'
       >
         Play again

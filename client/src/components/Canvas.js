@@ -15,6 +15,7 @@ let newY = 0;
 const Canvas = (props) => {
   console.log(props.location.location);
   console.log(props.locationOpponent.locationOpponent);
+  console.log(props.score);
   const canvas = React.useRef();
   const [newX, setNewX] = useState(0);
   const [newOpponentX, setNewOpponentX] = useState(0);
@@ -73,15 +74,18 @@ const Canvas = (props) => {
         }
       }
     }
-    const sizeBoard = document.querySelector('canvas');
+    setInterval(()=>{
+      const sizeBoard = document.querySelector('canvas');
 
-    window.addEventListener('resize', function () {
-      screenWidth = window.innerWidth / 2;
-      screenHeight = window.innerHeight / 2;
-      console.log("WINDOW RESIZED");
-      sizeBoard.width = screenWidth;
-      sizeBoard.height = screenHeight;
-    });
+      window.addEventListener('resize', function () {
+        screenWidth = window.innerWidth / 2;
+        screenHeight = window.innerHeight / 4;
+        console.log("WINDOW RESIZED");
+        sizeBoard.width = screenWidth;
+        sizeBoard.height = screenHeight;
+      });
+    },3000);
+
 
     function draw() {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -143,7 +147,7 @@ const Canvas = (props) => {
       startTime = then;
       draw();
     }
-    startAnimating(30);
+    startAnimating(60);
 
     now = Date.now();
     elapsed = now - startTime;
