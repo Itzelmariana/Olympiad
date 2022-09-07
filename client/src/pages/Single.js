@@ -7,6 +7,7 @@ import { useMutation, useQuery } from '@apollo/client';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
+import SingleBoard from '../components/SingleBoard';
 
 
 import Auth from '../utils/auth';
@@ -195,7 +196,7 @@ export default function Single() {
       setCurrentQuestion(currentQuestion + 1);
     } else {
       setShowScore(true);
-      if (score === 10) {
+      if (score === 9) {
         addWin();
       } else {
         addLose();
@@ -253,7 +254,9 @@ export default function Single() {
             </div>
             <div className='col-sm-12 col-md-8 col-lg-9'>
               <SingleBoard />
-              <Canvas  {...props} />
+               <div className='canvasBorder '>
+                <Canvas {...props} />
+              </div>
             </div>
           </div>
         ) : (
@@ -292,7 +295,9 @@ export default function Single() {
               </div>
               <div className='col-sm-12 col-md-8 col-lg-9 sBoard'>
                 <SingleBoard />
-                <Canvas {...props} />
+                 <div className='canvasBorder '>
+                   <Canvas {...props} />
+              </div>
               </div>
 
             </div>
