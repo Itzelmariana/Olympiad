@@ -14,7 +14,8 @@ import './Single.css';
 
 //import axios from 'axios';
 
-let questionArray = require('./q');
+// let questionArray = require('./q');
+let questionArray = require('./history');
 questionArray = questionArray.default;
 console.log(questionArray);
 // const url = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=multiple";
@@ -44,7 +45,7 @@ let answerOptions = [];
 let correct = [];
 function getQuestion() {
   // GET RANDOM NUMBER
-  let randomQuestion = Math.floor(Math.random() * 50);
+  let randomQuestion = Math.floor(Math.random() * 50 / 2 * 1.33);
   console.log('random' + randomQuestion);
   // USE RANDOM NUMBER TO SELECT QUESTION FROM ARRAY
   let qa = questionArray[randomQuestion];
