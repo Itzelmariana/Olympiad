@@ -1,9 +1,9 @@
-# Olympiad
+# Olympiad ✨
 ### License
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## Demo
-[Here is a demo of Olympiad in action!]() 
+
+[Here is the link to Olympiad!](https://olympiad-game.herokuapp.com) 
 ![landing page](./client/public/landing-page.jpg)
 
 ## Description
@@ -17,13 +17,13 @@ Users can make an account by signing up and providing a name, email, and creatin
 
 ### How To Play 
 
-#### Single Player
+#### 👤 Single Player
 
 To play the single player option, players will be up against their own ignorance represented by the dark color gradient. Your token is represented on the colorful gradient. As the player answer questions correctly, the token will advance forward towards the finish line. If the player answers the questions incorrectly, their ignorance token will advance towards its finish line. The token that reaches the their finish line first will win the game! Will you beat out your own ignorance? 
 
 <img src="./client/public/single.jpg" alt="single player" width="500"/>
 
-#### Multiplayer
+#### 👥 Multiplayer
 
 To access the muliplayer game one player should first login. Once they are logged in, the player can share their URL with player 2. Player 2 should copy and paste the URL into their browser. This will give both players access to the player 1's profile. 
 From this screen, both players should select the multiplayer option to begin playing. 
@@ -35,6 +35,9 @@ Once both players have accessed the game, each player will take turns answering 
 
 <img src="./client/public/multi.jpg" alt="multiplayer" width="500"/>
 
+## Technologies Used 💻
+
+This application was built using the MERN stack. We used Bootstrap as our CSS library. JWT and bycrypt for authentication. Our backend team used socket.io and canvas for the game logic and execution. 
 
 # Team ✨
 
