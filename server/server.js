@@ -50,11 +50,12 @@ startApolloServer(typeDefs, resolvers);
 // =========================
 const http = require('http').Server(app);
 
-const io = require('socket.io')(http, {
-  cors: {
-    origins: ['https://olympiad-game.herokuapp.com/'],
-  },
-});
+const io = require('socket.io');
+// (http, {
+//   cors: {
+//     origins: ['https://olympiad-game.herokuapp.com/'],
+//   },
+// })
 
 let playerArray = [];
 io.on('connection', (socket) => {
@@ -123,6 +124,6 @@ io.on('connection', (socket) => {
 });
 
 
-http.listen(PORT || 3002, () => {
-  console.log('server listening on localhost:3002');
+http.listen(PORT || 80, () => {
+  console.log('server listening...');
 });
