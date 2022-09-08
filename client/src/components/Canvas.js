@@ -6,11 +6,8 @@ import React, { useState, useEffect } from 'react';
 let screenWidth = window.innerWidth / 2;
 let screenHeight = window.innerHeight / 4;
 
-
-
 // let newX = 0;
 let newY = 0;
-
 
 const Canvas = (props) => {
   console.log(props.location.location);
@@ -24,10 +21,10 @@ const Canvas = (props) => {
     setNewX(props.location.location, newX);
     setNewOpponentX(props.locationOpponent.locationOpponent, newOpponentX);
     const pawn = new Image();
-    pawn.src = '/pawn1.png'
+    pawn.src = '/pawn1.png';
 
     const pawn2 = new Image();
-    pawn2.src = '/pawn2.png'
+    pawn2.src = '/pawn2.png';
 
     class Token {
       constructor() {
@@ -58,10 +55,16 @@ const Canvas = (props) => {
     class Opponent {
       constructor() {
         this.x = newOpponentX;
-        this.y = (screenHeight / 2);
+        this.y = screenHeight / 2;
       }
       exist() {
-        ctx.drawImage(pawn2, newOpponentX, this.y, (window.innerWidth / 10) / 2, (window.innerHeight / 5) / 2);
+        ctx.drawImage(
+          pawn2,
+          newOpponentX,
+          this.y,
+          window.innerWidth / 10 / 2,
+          window.innerHeight / 5 / 2
+        );
         // ctx.drawImage(pawn2, newX, newY, 600, 600, newX, newY, pawn.width*ratio, pawn.height*ratio);
       }
       update() {
@@ -90,30 +93,34 @@ const Canvas = (props) => {
     function draw() {
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
- // Create gradient
- var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
- grd.addColorStop(0, 'black');
- grd.addColorStop(0.25, 'grey');
- grd.addColorStop(0.5, 'grey');
- grd.addColorStop(0.75, 'grey');
- grd.addColorStop(1, 'white');
+      // Create gradient
+      var grd = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
+      grd.addColorStop(0, 'black');
+      grd.addColorStop(0.25, 'grey');
+      grd.addColorStop(0.5, 'grey');
+      grd.addColorStop(0.75, 'grey');
+      grd.addColorStop(1, 'white');
 
- // Fill with gradient
- ctx.fillStyle = grd;
- ctx.fillRect(0, ctx.canvas.height / 2, ctx.canvas.width, ctx.canvas.height / 2);
+      // Fill with gradient
+      ctx.fillStyle = grd;
+      ctx.fillRect(
+        0,
+        ctx.canvas.height / 2,
+        ctx.canvas.width,
+        ctx.canvas.height / 2
+      );
 
+      // Create gradient
+      var grd2 = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
+      grd2.addColorStop(0, 'red');
+      grd2.addColorStop(0.25, 'yellow');
+      grd2.addColorStop(0.5, 'green');
+      grd2.addColorStop(0.75, 'blue');
+      grd2.addColorStop(1, 'violet');
 
- // Create gradient
- var grd2 = ctx.createLinearGradient(100, 0, ctx.canvas.width, 0);
- grd2.addColorStop(0, 'red');
- grd2.addColorStop(0.25, 'yellow');
- grd2.addColorStop(0.5, 'green');
- grd2.addColorStop(0.75, 'blue');
- grd2.addColorStop(1, 'violet');
-
- // Fill with gradient
- ctx.fillStyle = grd2;
- ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height / 2);
+      // Fill with gradient
+      ctx.fillStyle = grd2;
+      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height / 2);
 
       // Create vertical grid lines
       for (let i = 0; i <= 10; i++) {
@@ -124,8 +131,8 @@ const Canvas = (props) => {
       }
       for (let i = 0; i <= 2; i++) {
         ctx.beginPath();
-        ctx.moveTo(0, screenHeight / 2 * i);
-        ctx.lineTo(screenWidth, screenHeight / 2 * i);
+        ctx.moveTo(0, (screenHeight / 2) * i);
+        ctx.lineTo(screenWidth, (screenHeight / 2) * i);
         ctx.stroke();
       }
 
@@ -155,7 +162,12 @@ const Canvas = (props) => {
       then = now - (elapsed % fpsInterval);
       draw();
     }
-  }, [props.location.location, newX, props.locationOpponent.locationOpponent, newOpponentX])
+  }, [
+    props.location.location,
+    newX,
+    props.locationOpponent.locationOpponent,
+    newOpponentX,
+  ]);
   // ============================================
 
   // CREATES THE CANVAS

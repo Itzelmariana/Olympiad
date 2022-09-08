@@ -25,6 +25,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
@@ -33,9 +37,11 @@ const startApolloServer = async (typeDefs, resolvers) => {
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-    })
-  })
+      console.log(
+        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
+      );
+    });
+  });
 };
 
 // Call the async function to start the server
@@ -53,7 +59,7 @@ const io = require('socket.io')(http, {
 let playerArray = [];
 io.on('connection', (socket) => {
   const myId = socket.id;
-  console.log(`My ID: ${myId}`)
+  console.log(`My ID: ${myId}`);
   console.log('player connected');
   const room = socket.handshake.query.room;
   console.log(room);
@@ -65,16 +71,15 @@ io.on('connection', (socket) => {
   const numClients = clients ? clients.size : 0;
   console.log(numClients);
 
-
   if (numClients == 1) {
-    console.log("I AM PLAYER ONE");
-    io.in(socket.id).emit("whatPlayerAmI", numClients);
+    console.log('I AM PLAYER ONE');
+    io.in(socket.id).emit('whatPlayerAmI', numClients);
   } else if (numClients == 2) {
-    console.log("I AM PLAYER TWO");
-    io.in(socket.id).emit("whatPlayerAmI", numClients);
+    console.log('I AM PLAYER TWO');
+    io.in(socket.id).emit('whatPlayerAmI', numClients);
   } else {
-    console.log("I AM A SPECTATOR");
-    io.in(socket.id).emit("whatPlayerAmI", "spectator");
+    console.log('I AM A SPECTATOR');
+    io.in(socket.id).emit('whatPlayerAmI', 'spectator');
   }
 
   playerArray.push(myId);
@@ -84,28 +89,25 @@ io.on('connection', (socket) => {
         io.to(room).emit('playerJoined', i);
       }
     });
-
   }
   socket.on('sendMessage', (message) => {
-    console.log("message sent");
-    io.in(room).emit("getMessage", message);
+    console.log('message sent');
+    io.in(room).emit('getMessage', message);
   });
 
   socket.on('changePlayerTurn', (turnNumber) => {
     // console.log(playerTurn);
-    io.in(room).emit("newPlayerTurn", turnNumber);
+    io.in(room).emit('newPlayerTurn', turnNumber);
   });
 
   socket.on('player1Move', (locationP1X) => {
     console.log(locationP1X);
-    io.in(room).emit("player1Position", locationP1X);
+    io.in(room).emit('player1Position', locationP1X);
   });
   socket.on('player2Move', (locationP2X) => {
     console.log(locationP2X);
-    io.in(room).emit("player2Position", locationP2X);
+    io.in(room).emit('player2Position', locationP2X);
   });
-
-
 
   socket.on('disconnect', () => {
     console.log('player disconnected');
@@ -116,9 +118,7 @@ io.on('connection', (socket) => {
           console.log(playerArray);
         }
       });
-
     }
-
   });
 });
 

@@ -53,6 +53,7 @@ const Navbar = () => {
               multiplayer option. This game was insprired by the poplular trivia
               board game, Marathon, played in Mexico!
             </p>
+            <h3>Single Player</h3>
             <p>
               The objective is to win against your own ignorance. To play,
               answer the multiple choice questions correctly to advance your
@@ -62,19 +63,24 @@ const Navbar = () => {
               line first, wins! Will you be brave enough and challenge your own
               ignorance?
             </p>
+
+            <h3>Multiplayer Player</h3>
             <p>
-            To access the muliplayer game one player should first login. Once they are 
-            logged in, the player can share their URL with player 2. Player 2 should copy 
-            and paste the URL into their browser. This will give both players access to 
-            the player 1's profile. From this screen, both players should select the 
-            multiplayer option to begin playing.
+              To access the muliplayer game one player should first login. Once
+              they are logged in, the player can share their URL with player 2.
+              Player 2 should copy and paste the URL into their browser. This
+              will give both players access to the player 1's profile. From this
+              screen, both players should select the multiplayer option to begin
+              playing.
             </p>
             <p>
-            Once both players have accessed the game, each player will take turns answering 
-            the questions. You will be playing against your friends! If a player gets a 
-            question correct, their game piece will move forward towards the finish line. 
-            Player 1 and player 2 will continue taking turns until the first player to reach 
-            the end wins! You can chat with your friend while you play!
+              Once both players have accessed the game, each player will take
+              turns answering the questions. You will be playing against your
+              friends! If a player gets a question correct, their game piece
+              will move forward towards the finish line. Player 1 and player 2
+              will continue taking turns until the first player to reach the end
+              wins! You can chat with your friend while you play!
+
             </p>
           </Modal.Body>
           <Modal.Footer>
