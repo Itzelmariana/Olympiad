@@ -96,8 +96,8 @@ let myPlayer;
 // IF NO ROOM, GENERATE A ROOM NAME AND CONNECT - OTHERWISE USE PROVIDED ROOM IN URL
 const room = getQueryParameter('room') || getRandomString(5);
 // CONNECT TO ROOM WITHIN URL
-const IS_PROD = process.env.NODE_ENV === "production";
-const URL = IS_PROD ? `https://olympiad-game.herokuapp.com/?room=${room}` : `localhost:3002/?room=${room}`;
+// const IS_PROD = process.env.NODE_ENV === "production";
+const URL = `https://olympiad-game.herokuapp.com/?room=${room}`;
 let socket = io(URL);
 
 if (window.location.href.indexOf('multiplayer') === -1) {
