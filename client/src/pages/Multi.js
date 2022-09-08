@@ -267,8 +267,7 @@ const Multi = () => {
   return (
     <div className='Multi'>
       <div className='row text-center'>
-        <div className='col-sm-12 col-md-3 col-lg-3'>
-          <h2 className=' myMultiUser'></h2>
+        <div className='col-sm-12 col-md-3 col-lg-3 myMultiUser'>
           <div className=' ml-4 mr-4 p-3 shadow mb-1 bg-white text-center myCard'>
             <div className='question-section'>
               <div className='question-count'>
