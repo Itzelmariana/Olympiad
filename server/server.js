@@ -6,7 +6,7 @@ const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT;
 const app = express();
 const server = new ApolloServer({
   typeDefs,
@@ -48,7 +48,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
 startApolloServer(typeDefs, resolvers);
 
 // =========================
-const http = require('http').Server(app);
+const server2 = require('http').createServer(app);
 
 const io = require('socket.io')(http, {
   cors: {
@@ -123,6 +123,6 @@ io.on('connection', (socket) => {
 });
 
 
-http.listen(PORT, () => {
+server2.listen(PORT, () => {
   console.log('server listening...');
 });
