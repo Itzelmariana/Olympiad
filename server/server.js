@@ -1,5 +1,6 @@
-const express = require('express');
-const app = express().createServer();
+const express = require('express')
+, http = require('http');
+const app = express();
 // const http = require('http').Server(app);
 const socket = require("socket.io")
 const io = socket.listen.app();
