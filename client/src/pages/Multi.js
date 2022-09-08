@@ -97,7 +97,7 @@ let myPlayer;
 const room = getQueryParameter('room') || getRandomString(5);
 // CONNECT TO ROOM WITHIN URL
 // const IS_PROD = process.env.NODE_ENV === "production";
-const URL = `https://olympiad-game.herokuapp.com/?room=${room}`;
+const URL = `http://olympiad-game.herokuapp.com/?room=${room}`;
 let socket = io(URL);
 
 if (window.location.href.indexOf('multiplayer') === -1) {
