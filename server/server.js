@@ -123,6 +123,6 @@ io.on('connection', (socket) => {
 });
 
 
-http.listen(3002, () => {
+http.listen(PORT || 3002, () => {
   console.log('server listening on localhost:3002');
 });
