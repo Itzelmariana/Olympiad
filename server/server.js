@@ -52,7 +52,7 @@ const server2 = require('http').createServer(app);
 
 const io = require('socket.io')(server2, {
   cors: {
-    origins: ['https://olympiad-game.herokuapp.com/'],
+    origins: ['http://olympiad-game.herokuapp.com/'],
   },
 });
 
