@@ -63,6 +63,7 @@ const Navbar = () => {
               line first, wins! Will you be brave enough and challenge your own
               ignorance?
             </p>
+
             <h3>Multiplayer Player</h3>
             <p>
               To access the muliplayer game one player should first login. Once
@@ -79,6 +80,7 @@ const Navbar = () => {
               will move forward towards the finish line. Player 1 and player 2
               will continue taking turns until the first player to reach the end
               wins! You can chat with your friend while you play!
+
             </p>
           </Modal.Body>
           <Modal.Footer>
