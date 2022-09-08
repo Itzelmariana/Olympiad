@@ -1,4 +1,9 @@
 const express = require('express');
+const app = express().createServer();
+// const http = require('http').Server(app);
+const socket = require("socket.io")
+const io = socket.listen.app();
+
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
@@ -6,8 +11,8 @@ const { authMiddleware } = require('./utils/auth');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT;
-const app = express();
+const PORT = process.env.PORT || 3001;
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -48,16 +53,10 @@ const startApolloServer = async (typeDefs, resolvers) => {
 startApolloServer(typeDefs, resolvers);
 
 // =========================
-const server2 = require('http').createServer(app);
 
-const io = require('socket.io')(server2, {
-  cors: {
-    origins: ['http://olympiad-game.herokuapp.com/'],
-  },
-});
 
 let playerArray = [];
-io.on('connection', (socket) => {
+io.sockets.on('connection', (socket) => {
   const myId = socket.id;
   console.log(`My ID: ${myId}`);
   console.log('player connected');
@@ -123,6 +122,6 @@ io.on('connection', (socket) => {
 });
 
 
-server2.listen(PORT, () => {
-  console.log('server listening...');
-});
+// http.listen(PORT || 3002, () => {
+//   console.log('server listening on localhost:3002');
+// });
