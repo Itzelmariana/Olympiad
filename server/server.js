@@ -123,6 +123,6 @@ io.on('connection', (socket) => {
 });
 
 
-http.listen(PORT || 80, () => {
+http.listen(PORT, () => {
   console.log('server listening...');
 });
