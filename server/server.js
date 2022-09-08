@@ -35,7 +35,7 @@ const startApolloServer = async (typeDefs, resolvers) => {
   server.applyMiddleware({ app });
 
   db.once('open', () => {
-    app.listen(PORT, () => {
+    http.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
       console.log(
         `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
@@ -47,12 +47,11 @@ const startApolloServer = async (typeDefs, resolvers) => {
 // Call the async function to start the server
 startApolloServer(typeDefs, resolvers);
 
-// =========================
 const http = require('http').Server(app);
 
 const io = require('socket.io')(http, {
   cors: {
-    origins: ['http://localhost:3000/'],
+    origins: [process.env.URL],
   },
 });
 
@@ -120,8 +119,4 @@ io.on('connection', (socket) => {
       });
     }
   });
-});
-
-http.listen(3002, () => {
-  console.log('server listening on localhost:3002');
 });
