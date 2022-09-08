@@ -59,7 +59,7 @@
 .chatbox {
   border-radius: 10px;
   padding: 5px;
-  color: white;
+  color: var(--blue4);
   border-radius: 10px;
 }
 
