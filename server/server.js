@@ -52,7 +52,7 @@ const http = require('http').Server(app);
 
 const io = require('socket.io')(http, {
   cors: {
-    origins: ['http://olympiad-game.herokuapp.com/'],
+    origins: ['http://localhost:3000/'],
   },
 });
 
@@ -122,6 +122,6 @@ io.on('connection', (socket) => {
   });
 });
 
-http.listen(PORT || 80, () => {
+http.listen(3002, () => {
   console.log('server listening on localhost:3002');
 });
