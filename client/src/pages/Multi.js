@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Canvas2 from '../components/Canvas2';
 import { Link } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@apollo/client';
+
+import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
+import { ADD_WIN, ADD_LOSE } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 import './Multi.css';
 
@@ -19,7 +25,7 @@ import Chatbox from '../components/Chatbox';
 // ============================================================================
 
 let screenWidth = window.innerWidth / 2;
-// let screenHeight = window.innerHeight / 2;
+
 
 // const questionArray = require('./q');
 var he = require('he');
@@ -91,11 +97,10 @@ let myPlayer;
 // IF NO ROOM, GENERATE A ROOM NAME AND CONNECT - OTHERWISE USE PROVIDED ROOM IN URL
 const room = getQueryParameter('room') || getRandomString(5);
 // CONNECT TO ROOM WITHIN URL
-// let socket = io(`localhost:3001/?room=${room}`);
 
 // client-side
-// const io = require("socket.io-client");
-const socket = io(`https://olympiad-game.herokuapp.com/?room=${room}`, {
+// const socket = io(`https://olympiad-game.herokuapp.com/?room=${room}`, {
+const socket = io(`http://localhost:3000/?room=${room}`, {
   withCredentials: true,
 });
 if (window.location.href.indexOf('multiplayer') === -1) {
@@ -126,7 +131,7 @@ const Multi = () => {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  //const [showScore, setShowScore] = useState(false);
+  const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [player2Score, setplayer2Score] = useState(0);
 
@@ -153,6 +158,27 @@ const Multi = () => {
     setPlayerTurn(turnNumber);
   });
 
+
+  function reportWindowSize() {
+
+    screenWidth = window.innerWidth / 2;
+    let screenHeight = window.innerWidth / 6;
+
+
+    console.log("WINDOW RESIZED");
+    console.log()
+    setLocation((screenWidth / 10) * (score));
+    setLocationP2X((screenWidth / 10) * (player2Score))
+  }
+
+  window.onresize = reportWindowSize;
+
+
+
+
+
+
+
   let props = {
     chatText: { chatText },
     locationP1X: { locationP1X },
@@ -171,34 +197,34 @@ const Multi = () => {
 
   // AUTHORIZATION
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
-  // const { profileId } = useParams();
-  // const { loading, data } = useQuery(
-  //   profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
-  //   {
-  //     variables: { profileId: profileId },
-  //   }
-  // );
+  const { profileId } = useParams();
+  const { loading, data } = useQuery(
+    profileId ? QUERY_SINGLE_PROFILE : QUERY_ME,
+    {
+      variables: { profileId: profileId },
+    }
+  );
 
-  // const profile = data?.me || data?.profile || {};
+  const profile = data?.me || data?.profile || {};
 
-  // if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-  //   return <Navigate to='/multiplayer' />;
-  // }
+  if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
+    return <Navigate to='/multiplayer' />;
+  }
 
-  // if (loading) {
-  //   return <div className='loading'>Loading...</div>;
-  // }
+  if (loading) {
+    return <div className='loading'>Loading...</div>;
+  }
 
-  // if (!profile?.name) {
-  //   return (
-  //     <div>
-  //       <h4 className='text-center myMessage'>
-  //         Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
-  //         the game.
-  //       </h4>
-  //     </div>
-  //   );
-  // }
+  if (!profile?.name) {
+    return (
+      <div>
+        <h4 className='text-center myMessage'>
+          Please <Link to='/'>login</Link> or <Link to='/'>signup</Link> to play
+          the game.
+        </h4>
+      </div>
+    );
+  }
   // +++++++++++++++++++++++++++++++++++++++++++++++++++
 
   // HANDLE ANSWER OPTIONS WHEN CLICKED ================
@@ -210,7 +236,8 @@ const Multi = () => {
         let audio = new Audio('aq.mp3');
         audio.play();
         if (myPlayer === 1) {
-          setScore(score + 1);
+          setScore(prevScore => prevScore + 1);
+
           let audio = new Audio('win.mp3');
           audio.volume = 0.1;
           audio.play();
@@ -220,7 +247,7 @@ const Multi = () => {
           turnNumber = 2;
           socket.emit('changePlayerTurn', turnNumber);
         } else if (myPlayer === 2) {
-          setplayer2Score(player2Score + 1);
+          setplayer2Score(prevPlayer2Score => prevPlayer2Score + 1);
           let audio = new Audio('win.mp3');
           audio.volume = 0.1;
           audio.play();
@@ -241,8 +268,8 @@ const Multi = () => {
       if (nextQuestion < 50 && score < 9 && player2Score < 9) {
         getQuestion();
         setCurrentQuestion(currentQuestion + 1);
-        // } else {
-        //   setShowScore(true);
+      } else {
+        setShowScore(true);
       }
     }
   };
@@ -263,61 +290,109 @@ const Multi = () => {
     // console.log('value is:', event.target.value);
   };
   // ========================================================
-
+  console.log("player 1 score: " + score);
   return (
     <div className='Multi'>
-      <div className='row text-center'>
-        <div className='col-sm-12 col-md-3 col-lg-3 myMultiUser'>
-          <div className=' ml-4 mr-4 p-3 shadow mb-1 bg-white text-center myCard'>
-            <div className='question-section'>
-              <div className='question-count'>
-                <span>Question {currentQuestion + 1}</span>
+      <div className='question-card-section'>
+        {showScore ? (
+          <div className='row'>
+            <div className='col-sm-12 col-md-4 col-lg-3'>
+              <h2 className='btn btn-block myUser'>
+                {profileId ? `${profile.name}'s` : ' '}
+                {profile.name}
+              </h2>
+              <div className=' m-2 p-3 shadow p-3 mb-5 bg-white text-center myCard'>
+                <div className='question-section'>
+                  <div className='question-count'>
+                    <span>SCORE</span>
+                  </div>
+                  <div className='question-text myQuestions'>
+                    {score < 10 ? (
+                      <div>
+                        You answered {score} questions correctly! You LOST the
+                        game!
+                      </div>
+                    ) : (
+                      <div>
+                        You answered {score} questions correctly! You WON the
+                        game{' '}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-              <div className='question-text myQuestions'>{newDecodedText}</div>
             </div>
-            <div className='answer-sections'>
-              {q[currentQuestion].answerOptions.map((answerOption) => (
-                <button
-                  className=' btn btn-block myBtn'
-                  key={Math.floor(Math.random() * 9999)}
-                  onClick={() =>
-                    handleAnswerOptionClick(answerOption.isCorrect)
-                  }
+            <div className='col-sm-12 col-md-8 col-lg-9'>
+              {/* <SingleBoard /> */}
+              <div className='canvasBorder '>
+                <Canvas2 {...props} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className='row text-center'>
+              <div className='col-sm-12 col-md-3 col-lg-3 myMultiUser'>
+                <h2 className='btn btn-block myUser'>
+                  <Link to='/me' className='myMeLink'>
+                    {profileId ? `${profile.name}'s` : ' '}
+                    {profile.name}
+                  </Link>
+                </h2>
+                <div className=' ml-4 mr-4 p-3 shadow mb-1 bg-white text-center myCard'>
+                  <div className='question-section'>
+                    <div className='question-count'>
+                      <span>Question {currentQuestion + 1}</span>
+                    </div>
+                    <div className='question-text myQuestions'>{newDecodedText}</div>
+                  </div>
+                  <div className='answer-sections'>
+                    {q[currentQuestion].answerOptions.map((answerOption) => (
+                      <button
+                        className=' btn btn-block myBtn'
+                        key={Math.floor(Math.random() * 9999)}
+                        onClick={() =>
+                          handleAnswerOptionClick(answerOption.isCorrect)
+                        }
+                      >
+                        {he.decode(answerOption.answerText)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className='col-sm-12 col-md-6 col-lg-6 myMultiBoard'>
+                <h2>Player Turn: {playerTurn}</h2>
+                <Canvas2 {...props} />
+              </div>
+              <div className='col-sm-12 col-md-3 col-lg-3 myMultiOther'>
+                <Link
+                  to='/multiplayer'
+                  onClick={() => window.location.reload()}
+                  className='myBtnPlayagain mb-3'
                 >
-                  {he.decode(answerOption.answerText)}
-                </button>
-              ))}
+                  Play again
+                </Link>
+                <div className=' myChat'>
+                  <div className='mb-2'>Chat</div>
+                  <input
+                    type='text'
+                    id='message'
+                    name='message'
+                    className='chatbox'
+                    onChange={handleChange}
+                    value={message}
+                    placeholder='type your message..'
+                  />
+                  <button className='myBtnChat' onClick={() => handleMessageClick()}>
+                    Send
+                  </button>
+                  <Chatbox {...props} />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className='col-sm-12 col-md-6 col-lg-6 myMultiBoard'>
-          <Link
-            to='/multiplayer'
-            onClick={() => window.location.reload()}
-            className='myBtnPlayagain mb-3'
-          >
-            Play again
-          </Link>
-          <Canvas2 {...props} />
-        </div>
-        <div className='col-sm-12 col-md-3 col-lg-3 myMultiOther'>
-          <div className=' myChat'>
-            <div className='mb-2'>Chat</div>
-            <input
-              type='text'
-              id='message'
-              name='message'
-              className='chatbox'
-              onChange={handleChange}
-              value={message}
-              placeholder='type your message..'
-            />
-            <button className='myBtnChat' onClick={() => handleMessageClick()}>
-              Send
-            </button>
-            <Chatbox {...props} />
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
