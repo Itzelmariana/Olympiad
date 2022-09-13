@@ -13,6 +13,9 @@ import logoutIcon from '../images/logout.png';
 
 import './Home.css';
 
+
+
+
 const Home = () => {
   const [state, setState] = useState({
     signupOpen: false,
@@ -71,10 +74,15 @@ const Home = () => {
                   </Link>
                 </div>
                 <div>
-                  <Link to='/multiplayer'>
+                  {/* <Link to='/multiplayer'>
                     <button className='btn btn-lg btn-success m-2 mb-5 largeButtonBlue'>
                       Multi Player
                     </button>
+                  </Link> */}
+                  <Link to='/connect'>
+                  <button className='btn btn-lg btn-success m-2 mb-5 largeButtonBlue'>
+                    Multi Player
+                  </button>
                   </Link>
                 </div>
               </div>

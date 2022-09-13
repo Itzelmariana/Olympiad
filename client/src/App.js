@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Single from './pages/Single';
 import Multi from './pages/Multi';
+import MProom from './pages/MProom';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -48,6 +49,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/multiplayer' element={<Multi />} />
+            <Route path='/connect' element={<MProom />} />
             <Route path='/singleplayer' element={<Single />} />
             <Route path='/me' element={<Profile />} />
             <Route

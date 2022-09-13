@@ -21,9 +21,9 @@ import {
 import qArray from './q2';
 import Chatbox from '../components/Chatbox';
 // console.log(qArray);
-
+import socket from './socket';
 // ============================================================================
-
+console.log("!!!!!?!?!?!?!?!?!?!????????????!?!?!?!?!?!?")
 let screenWidth = window.innerWidth / 2;
 
 
@@ -91,38 +91,36 @@ function shuffle(array) {
 }
 // ============================================================================
 
-let myPlayer;
+let myPlayer = 1;
 
 // SOCKET IO
 // IF NO ROOM, GENERATE A ROOM NAME AND CONNECT - OTHERWISE USE PROVIDED ROOM IN URL
-const room = getQueryParameter('room') || getRandomString(5);
+// const room = getQueryParameter('room') || getRandomString(5);
 // CONNECT TO ROOM WITHIN URL
-
+// const currentRoom = "lobby";
 // client-side
 // const socket = io(`https://olympiad-game.herokuapp.com/?room=${room}`, {
-const socket = io(`http://localhost:3000/?room=${room}`, {
-  withCredentials: true,
-});
-if (window.location.href.indexOf('multiplayer') === -1) {
-  window.history.replaceState(
-    {},
-    document.title,
-    updateQueryParameter('room', room)
-  );
-}
+// const socket = io(`http://localhost:3000/?room=${currentRoom}`, {
+//   withCredentials: true,
+// });
+// if (window.location.href.indexOf('multiplayer') === -1) {
+//   window.history.replaceState(
+//     {},
+//     document.title,
+//     updateQueryParameter('room', room)
+//   );
+// }
 
 // ANNOUNCE NEW PLAYERS WHEN THEY JOIN
-socket.on('playerJoined', (i) => {
+socket.on('playerJoined', (roomName) => {
   // console.log('playerJoined');
   // console.log(`PLAYER: ${i}`);
+  // roomName = currentRoom;
 });
 
 socket.on('whatPlayerAmI', (numClients) => {
   myPlayer = numClients;
-  // console.log(`I AM PLAYER NUMBER: ${myPlayer}`);
-  if (myPlayer === 1) {
-    // console.log('I AM PLAYER 11111111');
-  }
+  console.log(`I AM PLAYER NUMBER: ${myPlayer}`);
 });
 
 const Multi = () => {

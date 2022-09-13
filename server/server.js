@@ -58,28 +58,31 @@ const io = require('socket.io')(http, {
 let playerArray = [];
 io.on('connection', (socket) => {
   const myId = socket.id;
-  console.log(`My ID: ${myId}`);
+  // console.log(`My ID: ${myId}`);
   console.log('player connected');
-  const room = socket.handshake.query.room;
+  let room = "lobby"
   console.log(room);
   socket.join(room);
-  //this is an ES6 Set of all client ids in the room
-  const clients = io.sockets.adapter.rooms.get(room);
 
-  //to get the number of clients in this room
-  const numClients = clients ? clients.size : 0;
-  console.log(numClients);
 
-  if (numClients == 1) {
-    console.log('I AM PLAYER ONE');
-    io.in(socket.id).emit('whatPlayerAmI', numClients);
-  } else if (numClients == 2) {
-    console.log('I AM PLAYER TWO');
-    io.in(socket.id).emit('whatPlayerAmI', numClients);
-  } else {
-    console.log('I AM A SPECTATOR');
-    io.in(socket.id).emit('whatPlayerAmI', 'spectator');
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   playerArray.push(myId);
   if (playerArray.includes(myId)) {
@@ -89,6 +92,35 @@ io.on('connection', (socket) => {
       }
     });
   }
+
+  socket.on('changeMyRoom', (newRoom) => {
+    socket.leaveAll();
+    socket.join(newRoom);
+    room = newRoom;
+    let newRoomSuccessful = newRoom;
+  
+    io.to(room).emit('playerJoined', newRoom);
+    console.log(socket.rooms);
+    //this is an ES6 Set of all client ids in the room
+    const clients = io.sockets.adapter.rooms.get(newRoom);
+    //to get the number of clients in this room
+    const numClients = clients.size;
+    console.log(numClients);
+    io.in(newRoom).emit("roomChange", numClients);
+    if (numClients == 1) {
+      console.log('I AM PLAYER ONE');
+      io.to(socket.id).emit('whatPlayerAmI', numClients);
+    } else if (numClients == 2) {
+      console.log('I AM PLAYER TWO');
+      socket.to(newRoom).emit('playerTwoReady', numClients);
+      io.in(socket.id).emit('whatPlayerAmI', numClients);
+    } else {
+      console.log('I AM A SPECTATOR');
+      io.in(socket.id).emit('whatPlayerAmI', 'spectator');
+    }
+
+
+  });
   socket.on('sendMessage', (message) => {
     console.log('message sent');
     io.in(room).emit('getMessage', message);
